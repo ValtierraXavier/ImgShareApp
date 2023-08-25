@@ -3,7 +3,7 @@ import {signIn} from '../../Services/UserServices/UserServices.js'
 import axios from 'axios'
 import './LogInModal.css'
 
-export default function LogInModal() {
+export default function LogInModal({setModalOpen}) {
     const[email, setEmail] = useState('')
     const[password, setPassword] = useState('')
 
@@ -25,6 +25,12 @@ const handleLogin = async (e)=>{
     }catch(error){console.log(error)}
 }
 
+const closeLoginModal = ()=>{
+    const loginModal = document.getElementById('loginModal')
+    loginModal.style.visibility = 'hidden'
+    setModalOpen(prev => prev = false)
+}
+
   return (
     <div className='loginModal' id='loginModal'>
         <h2 className='loginFormTitle'>Log In</h2>
@@ -35,6 +41,7 @@ const handleLogin = async (e)=>{
             <input type='password' className='loginInput' id='passwordInput' onChange={(e)=>{setPassword(prev => prev = e.target.value)}} value={password}></input>
             <input type='submit' id='loginSubmitButton'></input>
         </form>
+        <div onClick={closeLoginModal} id = 'loginModalCloseButton'>Close</div>
     </div>
   )
 }

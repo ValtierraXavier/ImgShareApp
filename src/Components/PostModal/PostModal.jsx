@@ -25,6 +25,10 @@ export default function PostModal({setPostModalData, postModalData}) {
         console.log('comment submitted')
 
     }
+    const closePostModal=()=>{
+        const postModal = document.getElementById('postModal')
+        postModal.style.visibility = 'hidden'
+    }
 
   return (
     <div className='postModal' id ='postModal'>
@@ -60,6 +64,7 @@ export default function PostModal({setPostModalData, postModalData}) {
             </form>
             </div>
         </div>
+        <div onClick={closePostModal} id='closeButton'> Close</div>
     </div>
   )
 }

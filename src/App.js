@@ -67,7 +67,7 @@ function App() {
   return (
     <div className="App" id='App'>
       <Nav user = {user} HandleLoginModal={HandleLoginModal} />
-      <LogInModal/>
+      <LogInModal setModalOpen={setModalOpen}/>
       <PostModal postModalData={postModalData} setPostModalData={setPostModalData}/>
       <Routes> 
         <Route path = '/' element={<Landing setPostModalData={setPostModalData} postModalRef={postModalRef} posts={posts}/>}/>
