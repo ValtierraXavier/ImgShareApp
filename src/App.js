@@ -14,7 +14,7 @@ import jwtDecode from 'jwt-decode';
 function App() {
 
   const[modalOpen, setModalOpen] = useState(false)
-  const[postModalOpen, setPOstModalOpen] = useState(false)
+  // const[postModalOpen, setPOstModalOpen] = useState(false)
   const[postModalData, setPostModalData] = useState({})
   const[posts, setPosts] = useState([])
   const[user, setUser] = useState({})
