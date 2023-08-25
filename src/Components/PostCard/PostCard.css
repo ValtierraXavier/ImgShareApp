@@ -1,0 +1,64 @@
+.postCardContainer{
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+#imgContainer{
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    width: 400px;
+    /* border: solid black; */
+}
+
+.cardTitle{
+    position:absolute;
+    z-index: 200;
+    height: fit-content;
+    width: fit-content;
+    background-color: rgba(100,100,100,.9);
+    border-radius: 0 10px 10px 0;
+    padding: 5px;
+    box-sizing: border-box;
+    color: white;
+    top: -10px;
+}
+
+#postCard{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+#imgContainer:hover > #caption{
+    background-color: rgba(100,100,100,.9); 
+    color: rgba(0,0,0,1);
+    visibility: visible;
+}
+
+#caption{
+    visibility: hidden;
+    z-index: 200;
+    position:absolute;
+    height: 30%;
+    background-color: rgba(100,100,100, .0);
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    top: 168px;
+    padding: 5px;
+    border-radius: 0px 0px 10px 10px;
+    color: rgba(0,0,0,.001);
+    transition: background-color .2s ease-in-out, visibility 0s .1s;
+}
+
+#postImg{
+    position: relative;
+    border-radius:10px 10px 10px 10px;
+}
+
+#likesButton{
+    height: fit-content;
+    padding:5px;
+}

@@ -1,0 +1,31 @@
+.navContainer{
+    display: flex;
+    flex-flow: row nowrap;
+    position: fixed;
+    z-index:1000;
+    align-items: center;
+    justify-content: space-around;
+    top: 0;
+    width: 100vw;
+    height: 5rem;
+    background-color: rgba(100,100,100,.8);
+}
+
+.navUserDetail{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 48%;
+    margin: 0 1;
+}
+
+
+.signInButtons{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    width: 48%;
+    margin: 0 1;
+}

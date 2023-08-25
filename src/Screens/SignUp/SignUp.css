@@ -1,0 +1,20 @@
+.signupPageContainer{
+    border: solid black 1px;
+}
+
+.signupForm{
+    display:flex;
+    flex-flow: column nowrap;
+}
+
+.signupInput{
+    margin: 5px 5%;
+    border: solid black 1px;
+    outline: none;
+    width: 90%;
+    height: 1.2rem;    
+}
+
+#signupButton{
+    width: 90.3%;
+}

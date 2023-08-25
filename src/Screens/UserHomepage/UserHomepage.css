@@ -1,0 +1,20 @@
+.userHomepage{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+#userPostsMapContainer{
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    top: 90px;
+    width: 33%;
+    margin: 0 33%;
+}
+
+#userHomepageLabel{
+    position: absolute;
+    top: 70px;
+    left: 10px;
+}
