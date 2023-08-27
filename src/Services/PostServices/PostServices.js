@@ -9,9 +9,8 @@ export const getPost = async(id)=>{
 }
 
 export const postPost = async(PostBody)=>{
-    await postAPI.post('/post', PostBody)
     return(
-         await getPost()
+        await postAPI.post('/post', PostBody)
         )
 }
 

@@ -10,12 +10,14 @@ import UserStuff from './Screens/userStuff/UserStuff.jsx';
 import PostModal from './Components/PostModal/PostModal.jsx';
 import {getPosts} from './Services/PostServices/PostServices.js'
 import jwtDecode from 'jwt-decode';
+import AddPostModal from './Components/AddPostModal/AddPostModal.jsx';
 
 function App() {
 
   const[modalOpen, setModalOpen] = useState(false)
   // const[postModalOpen, setPOstModalOpen] = useState(false)
   const[postModalData, setPostModalData] = useState({})
+  const[addPostModalOpen, setAddPostModalOpen] = useState(false)
   const[posts, setPosts] = useState([])
   const[user, setUser] = useState({})
   let postModalRef = useRef({})
@@ -31,6 +33,12 @@ function App() {
               setModalOpen(prev => prev = false)
             }
     }
+
+    const handleAddPostModal = () =>{
+        const addPostModal = document.getElementById('addPostModal')
+        addPostModal.style.visibility='visible'
+        setAddPostModalOpen(prev => prev = true)
+      }
 
     const checkUser=()=>{
       const token = window.localStorage.getItem('Token')
@@ -65,9 +73,10 @@ function App() {
 
   return (
     <div className="App" id='App'>
-      <Nav user = {user} HandleLoginModal={HandleLoginModal} />
+      <Nav user = {user} handleAddPostModal={handleAddPostModal} HandleLoginModal={HandleLoginModal} />
       <LogInModal setModalOpen={setModalOpen}/>
       <PostModal user = {user} postModalData={postModalData} setPostModalData={setPostModalData}/>
+      <AddPostModal user = {user}/>
       <Routes> 
         <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} postModalRef={postModalRef} posts={posts}/>}/>
         <Route path = '/signup' element={<SignupPage/>} />

@@ -32,7 +32,7 @@ export default function PostModal({setPostModalData, postModalData, user}) {
 
     const handleMakeComment=async(e)=>{
         // console.log(e.target.dataset)
-        e.preventDefault(true)
+        e.preventDefault(false)
         const comment ={
             commentAuthor:user.id,
             commentText: commentText,
@@ -42,10 +42,8 @@ export default function PostModal({setPostModalData, postModalData, user}) {
             const newComment = await postComment(comment)
             console.log('comment return data', newComment)
             const newCommentId = newComment.newComment.data
-            // console.log(e.target.dataset.user_id)
-            const boop = await updateUser(user.id, {newCommentId})
-            console.log("this" ,boop)
-            console.log('newcommentid:',newCommentId,"  userid: ",user.id)
+            const addCommentIdToUser = await updateUser(user.id, {newCommentId})
+            console.log("this" ,addCommentIdToUser)
         }catch(error){console.log(error.message)}
 
     }
