@@ -14,7 +14,7 @@ export default function Landing({posts, postModalRef, setPostModalData}) {
      postModal.style.visibility = "visible"
     }catch(err){console.log(err.message)}
 
-    console.log(e.target.dataset._id)
+    console.log("postCard onClick",e.target.dataset._id)
 
   }
 
@@ -24,7 +24,7 @@ export default function Landing({posts, postModalRef, setPostModalData}) {
     {posts.length?
       <div id ='postCardMapContainer'>{
       posts.map((post, index)=>{
-        return(<div onClick={setupOpenModal} data-_id = {post._id}><PostCard key={`PU${index}`} post={post}/></div>)
+        return(<div key={`PCC${index}`} onClick={setupOpenModal} data-_id = {post._id}><PostCard key={`PU${index}`} post={post}/></div>)
       })
       }</div>
       :<div id ='homepageLoading'>

@@ -1,5 +1,5 @@
 .loginModal{
-    position: absolute;
+    position: fixed;
     visibility: hidden;
     z-index: 900;
     border: solid black 1px;

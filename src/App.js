@@ -38,7 +38,7 @@ function App() {
         console.log('youre logged in')
         const decoded = jwtDecode(token)
         setUser(prev => prev = decoded)
-        console.log(decoded)
+        console.log("decoded JWT", user)
       }else{
         console.log('you are not logged in')
         setUser(prev => prev = {
@@ -55,9 +55,8 @@ function App() {
     }
 
     
-    
     useEffect(()=>{
-      console.log(postModalData)
+      // console.log('postModalData from App',postModalData)
     },[postModalData])
   useEffect(()=>{
     checkUser()
@@ -68,12 +67,12 @@ function App() {
     <div className="App" id='App'>
       <Nav user = {user} HandleLoginModal={HandleLoginModal} />
       <LogInModal setModalOpen={setModalOpen}/>
-      <PostModal postModalData={postModalData} setPostModalData={setPostModalData}/>
+      <PostModal user = {user} postModalData={postModalData} setPostModalData={setPostModalData}/>
       <Routes> 
-        <Route path = '/' element={<Landing setPostModalData={setPostModalData} postModalRef={postModalRef} posts={posts}/>}/>
+        <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} postModalRef={postModalRef} posts={posts}/>}/>
         <Route path = '/signup' element={<SignupPage/>} />
-        <Route path = '/user' element={<UserHomepage postModalRef={postModalRef}/>} />       
-        <Route path = '/user/settings' element={<UserStuff/>} />
+        <Route path = '/user' element={<UserHomepage user = {user} postModalRef={postModalRef}/>} />       
+        <Route path = '/user/settings' element={<UserStuff user = {user}/>} />
       </Routes>
     </div>
   );

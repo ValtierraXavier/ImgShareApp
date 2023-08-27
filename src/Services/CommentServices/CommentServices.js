@@ -9,9 +9,9 @@ export const getComment = async(id)=>{
 }
 
 export const postComment = async(commentBody)=>{
-    await commentsAPI.post('/post', commentBody)
+   const newComment = await commentsAPI.post('/post', commentBody)
     return(
-         await getComments()
+         {allComments: await getComments(), newComment: newComment}
         )
 }
 

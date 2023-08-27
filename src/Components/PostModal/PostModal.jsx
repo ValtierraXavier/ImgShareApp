@@ -2,32 +2,52 @@ import React, {useState} from 'react'
 import './PostModal.css'
 import Comments from '../Comments/Comments.jsx'
 import { postComment, getComments } from '../../Services/CommentServices/CommentServices.js'
+import {getUser, updateUser} from '../../Services/UserServices/UserServices.js'
 
-export default function PostModal({setPostModalData, postModalData}) {
+export default function PostModal({setPostModalData, postModalData, user}) {
     
     const[commentText, setCommentText] = useState('')
     const[allComments, setAllComments] = useState([])
 
-    const handleCommentSubmit = async (e)=>{
-        e.preventDefault(true)
-        const commentBody ={
-            commentText: commentText,
-        }
-        try{
-            const commentsReturn = await postComment(commentBody)
+    // const handleCommentSubmit = async (e)=>{
+    //     e.preventDefault(true)
+    //     const commentBody ={
+    //         commentText: commentText,
+    //     }
+    //     try{
+    //         const commentsReturn = await postComment(commentBody)
 
-            const comments = await getComments()
-            console.log(comments)
-            setAllComments(prev => prev = commentsReturn.data)
-            console.log(commentsReturn.data)
-            console.log(postModalData)
-        }catch(error){console.log(error)}
-        console.log('comment submitted')
-
-    }
+    //         const comments = await getComments()
+    //         console.log(comments)
+    //         setAllComments(prev => prev = commentsReturn.data)
+    //         console.log(commentsReturn.data)
+    //         console.log(postModalData)
+    //     }catch(error){console.log(error)}
+    //     console.log('comment submitted')
+    // }
     const closePostModal=()=>{
         const postModal = document.getElementById('postModal')
         postModal.style.visibility = 'hidden'
+    }
+
+    const handleMakeComment=async(e)=>{
+        // console.log(e.target.dataset)
+        e.preventDefault(true)
+        const comment ={
+            commentAuthor:user.id,
+            commentText: commentText,
+            whatPost: e.target.dataset.post_id
+        }
+        try{
+            const newComment = await postComment(comment)
+            console.log('comment return data', newComment)
+            const newCommentId = newComment.newComment.data
+            // console.log(e.target.dataset.user_id)
+            const boop = await updateUser(user.id, {newCommentId})
+            console.log("this" ,boop)
+            console.log('newcommentid:',newCommentId,"  userid: ",user.id)
+        }catch(error){console.log(error.message)}
+
     }
 
   return (
@@ -51,16 +71,18 @@ export default function PostModal({setPostModalData, postModalData}) {
                 {
                     allComments.map((comment, index)=>{
                         return(
-                            <Comments comment = {comment} key ={`commentitself${index}`} />
+                            <div key={`CsC${index}`}>
+                                <Comments comment = {comment} key ={`commentItself${index}`} />
+                            </div>
                             )
                         })
                     }
                 </div>
             <div></div>
-            <form id ='commentForm' onSubmit={handleCommentSubmit}>
+            <form id ='commentForm' >
                 <label>Comment Here</label>
                 <textarea className ='commentsTextArea' onChange={(e)=>setCommentText(prev => prev = e.target.value)} value = {commentText} type= 'text' ></textarea>
-                <input type = 'submit' id = 'makeCommentButton'></input>
+                <input onClick={handleMakeComment} data-post_id = {postModalData._id} data-user_id = {user.id} type = 'submit' id = 'makeCommentButton'></input>
             </form>
             </div>
         </div>
