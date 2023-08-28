@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './AddPostModal.css'
-import {postPost} from '../../Services/PostServices/PostServices.js'
+import {postPost, linkComment} from '../../Services/PostServices/PostServices.js'
 
 export default function AddPostModal({user}) {
 

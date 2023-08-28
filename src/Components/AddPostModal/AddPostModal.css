@@ -33,6 +33,8 @@
     align-items: flex-start;
 }
 
+
+
 .addPostForm{
     display: flex;
     position: relative;
@@ -71,3 +73,4 @@
     margin: 0 5%;
     width: 90%;
 }
+

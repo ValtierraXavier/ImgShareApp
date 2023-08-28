@@ -8,18 +8,17 @@ import SignupPage from './Screens/SignUp/SignUp.jsx';
 import UserHomepage from './Screens/UserHomepage/UserHomepage.jsx';
 import UserStuff from './Screens/userStuff/UserStuff.jsx';
 import PostModal from './Components/PostModal/PostModal.jsx';
-import {getPosts} from './Services/PostServices/PostServices.js'
+import {getPosts, postWithPopulatedComments} from './Services/PostServices/PostServices.js'
 import jwtDecode from 'jwt-decode';
 import AddPostModal from './Components/AddPostModal/AddPostModal.jsx';
 
 function App() {
 
   const[modalOpen, setModalOpen] = useState(false)
-  // const[postModalOpen, setPOstModalOpen] = useState(false)
   const[postModalData, setPostModalData] = useState({})
-  const[addPostModalOpen, setAddPostModalOpen] = useState(false)
   const[posts, setPosts] = useState([])
   const[user, setUser] = useState({})
+  // const[postComments, setPostComments]= useState([])
   let postModalRef = useRef({})
         
   const HandleLoginModal=()=>{
@@ -37,7 +36,6 @@ function App() {
     const handleAddPostModal = () =>{
         const addPostModal = document.getElementById('addPostModal')
         addPostModal.style.visibility='visible'
-        setAddPostModalOpen(prev => prev = true)
       }
 
     const checkUser=()=>{
@@ -61,11 +59,19 @@ function App() {
         setPosts(prev => prev = allPosts.data)
       }catch(error){console.log(error)}
     }
-
     
-    useEffect(()=>{
-      // console.log('postModalData from App',postModalData)
-    },[postModalData])
+    const getPostAndComments = async(e)=>{
+      const postModal = document.getElementById('postModal')
+      e.preventDefault(true)
+      try{
+        const postWComments = await postWithPopulatedComments(e.target.dataset._id)
+        setPostModalData(prev=>prev=postWComments.data)
+        // console.log(postWComments.data)
+        postModal.style.visibility = "visible"
+      }catch(error){console.log(error.message)}
+
+    }
+
   useEffect(()=>{
     checkUser()
     getAllPosts()
@@ -75,12 +81,12 @@ function App() {
     <div className="App" id='App'>
       <Nav user = {user} handleAddPostModal={handleAddPostModal} HandleLoginModal={HandleLoginModal} />
       <LogInModal setModalOpen={setModalOpen}/>
-      <PostModal user = {user} postModalData={postModalData} setPostModalData={setPostModalData}/>
+      <PostModal user = {user} getAllPosts={getAllPosts} setPostModalData={setPostModalData} postModalData={postModalData} />
       <AddPostModal user = {user}/>
       <Routes> 
-        <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} postModalRef={postModalRef} posts={posts}/>}/>
+        <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} getPostAndComments={getPostAndComments} setPosts={setPosts} posts={posts}/>}/>
         <Route path = '/signup' element={<SignupPage/>} />
-        <Route path = '/user' element={<UserHomepage user = {user} postModalRef={postModalRef}/>} />       
+        <Route path = '/user' element={<UserHomepage user = {user} postModalRef={postModalRef} getPostAndComments={getPostAndComments}/>} />       
         <Route path = '/user/settings' element={<UserStuff user = {user}/>} />
       </Routes>
     </div>

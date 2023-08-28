@@ -3,47 +3,37 @@ import './PostModal.css'
 import Comments from '../Comments/Comments.jsx'
 import { postComment, getComments } from '../../Services/CommentServices/CommentServices.js'
 import {getUser, updateUser} from '../../Services/UserServices/UserServices.js'
+import {linkCommentToPost, postWithPopulatedComments, getPost, getPosts} from '../../Services/PostServices/PostServices.js'
 
-export default function PostModal({setPostModalData, postModalData, user}) {
+export default function PostModal({getAllPosts, setPostModalData, postModalData, user}) {
     
     const[commentText, setCommentText] = useState('')
-    const[allComments, setAllComments] = useState([])
 
-    // const handleCommentSubmit = async (e)=>{
-    //     e.preventDefault(true)
-    //     const commentBody ={
-    //         commentText: commentText,
-    //     }
-    //     try{
-    //         const commentsReturn = await postComment(commentBody)
-
-    //         const comments = await getComments()
-    //         console.log(comments)
-    //         setAllComments(prev => prev = commentsReturn.data)
-    //         console.log(commentsReturn.data)
-    //         console.log(postModalData)
-    //     }catch(error){console.log(error)}
-    //     console.log('comment submitted')
-    // }
     const closePostModal=()=>{
         const postModal = document.getElementById('postModal')
         postModal.style.visibility = 'hidden'
+        setCommentText(prev => prev = '')
+        setPostModalData(prev => prev = {})
     }
 
     const handleMakeComment=async(e)=>{
-        // console.log(e.target.dataset)
         e.preventDefault(false)
+
+        const postModal = document.getElementById('postModal')
+
         const comment ={
             commentAuthor:user.id,
             commentText: commentText,
             whatPost: e.target.dataset.post_id
         }
+
         try{
             const newComment = await postComment(comment)
-            console.log('comment return data', newComment)
             const newCommentId = newComment.newComment.data
             const addCommentIdToUser = await updateUser(user.id, {newCommentId})
-            console.log("this" ,addCommentIdToUser)
+            const addCommentIdToPost = await linkCommentToPost(e.target.dataset.post_id, {newCommentId})
+            setCommentText(prev => prev = '')
+            getAllPosts()
         }catch(error){console.log(error.message)}
 
     }
@@ -67,10 +57,10 @@ export default function PostModal({setPostModalData, postModalData, user}) {
                 </div>
                 <div className= 'commentsContainerMap'>
                 {
-                    allComments.map((comment, index)=>{
+                    postModalData.postComments?.map((comment, index)=>{
                         return(
                             <div key={`CsC${index}`}>
-                                <Comments comment = {comment} key ={`commentItself${index}`} />
+                                <Comments comment={comment} key ={`commentItself${index}`}  />
                             </div>
                             )
                         })

@@ -21,3 +21,15 @@ export const updatePost = async(id, body)=>{
 export const deletePost = async(id)=>{
     await postAPI.delete(`/delete/${id}`)
 }
+
+export const linkCommentToPost = async ( id, body)=>{
+    return(
+        await postAPI.put(`/comment/put/${id}`,body)
+    )
+}
+
+export const postWithPopulatedComments =async(id)=>{
+    return(
+        await postAPI.get(`/postwcomments/${id}`)
+    )
+}
