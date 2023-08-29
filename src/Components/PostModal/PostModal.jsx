@@ -11,6 +11,7 @@ export default function PostModal({getAllPosts, setPostModalData, postModalData,
 
     const closePostModal=()=>{
         const postModal = document.getElementById('postModal')
+        console.log(postModalData)
         postModal.style.visibility = 'hidden'
         setCommentText(prev => prev = '')
         setPostModalData(prev => prev = {})

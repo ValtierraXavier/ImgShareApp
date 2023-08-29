@@ -1,4 +1,5 @@
 .loginModal{
+    display:flex;
     position: fixed;
     visibility: hidden;
     z-index: 900;
@@ -6,25 +7,67 @@
     background-color: rgba(100,100,100,.7);
     height: 100vh;
     width: 100vw;
+    justify-content: center;
+    align-items: center;
 }
 
+.loginFormContainerAndTitle{
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+    margin: 0 25%;
+    background-color: rgba(100,100,100,.85);
+}
+
+#loginSubmitButton{
+    position: relative;
+    width: 50%;
+    height: 2.5rem;
+    margin: 2% 25% 2% 25%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: solid black 1px;
+    background-color: white;
+    font-size: 1.5rem;
+    transition: .3s background-color ease-in-out;
+}
+
+.loginFormContainer{
+    display:flex;
+    position:relative;
+    justify-content: center;
+    align-content: center;
+    width: 90%;
+    height: 70%;
+    border-radius: 5px;
+}
 
 .loginForm{
     display: flex;
     flex-flow: column nowrap;
     position: relative;
-    height: 50vh;
-    width: 50vw;
-    margin: 25vh 25vw;
+    align-items: space-between;
+    width:100%;
+    height:100%;
 }
 
 .loginInput{
-    margin: 5px;
+    box-sizing: border-box;
     border-radius: 5px;
     border: solid black 1px;
     outline: none;
-    height: 1.2rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    padding: 2px;
+    margin: 5px 0px;
+    background-color: rgba(255,255,255,1);
+    transition: .5s ease-in-out .3,;
 }
+
 
 #loginModalCloseButton{
     display: flex;

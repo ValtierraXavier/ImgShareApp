@@ -1,5 +1,7 @@
 import './App.css';
-import { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+import { useEffect, useState } from 'react';
 import {Routes, Route} from 'react-router-dom'
 import Nav from './Components/Nav/Nav.jsx'
 import Landing from './Screens/Landing/Landing.jsx'
@@ -8,9 +10,9 @@ import SignupPage from './Screens/SignUp/SignUp.jsx';
 import UserHomepage from './Screens/UserHomepage/UserHomepage.jsx';
 import UserStuff from './Screens/userStuff/UserStuff.jsx';
 import PostModal from './Components/PostModal/PostModal.jsx';
-import {getPosts, postWithPopulatedComments} from './Services/PostServices/PostServices.js'
-import jwtDecode from 'jwt-decode';
 import AddPostModal from './Components/AddPostModal/AddPostModal.jsx';
+import {getPosts, postWithPopulatedComments} from './Services/PostServices/PostServices.js'
+import { signIn } from './Services/UserServices/UserServices.js';
 
 function App() {
 
@@ -18,10 +20,11 @@ function App() {
   const[postModalData, setPostModalData] = useState({})
   const[posts, setPosts] = useState([])
   const[user, setUser] = useState({})
-  // const[postComments, setPostComments]= useState([])
-  let postModalRef = useRef({})
+  const[email, setEmail] = useState('')
+  const[password, setPassword] = useState('')
+
         
-  const HandleLoginModal=()=>{
+  const openLoginModal=()=>{
             if(modalOpen === false){
               const loginModal = document.getElementById('loginModal')
               loginModal.style.visibility = 'visible'
@@ -33,44 +36,79 @@ function App() {
             }
     }
 
-    const handleAddPostModal = () =>{
-        const addPostModal = document.getElementById('addPostModal')
-        addPostModal.style.visibility='visible'
-      }
+  const handleLogin = async (e)=>{
+    e.preventDefault(false)
+    const emailLabel = document.getElementById('emailLabel')
+    const passwordLabel = document.getElementById('passwordLabel')
+    const loginSubmitButton = document.getElementById('loginSubmitButton')
+    const credentials = {
+        email: email,
+        password: password
+    }
+  
+    try{
+        const userToken = await signIn(credentials)
+        console.log(userToken)
+        if(userToken.status === 201){
+          window.localStorage.setItem('Token', `Bearer ${userToken.data.token}`)
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + userToken.data.token;
+          emailLabel.style.color = 'green'
+          passwordLabel.style.color = 'green'
+          loginSubmitButton.style.backgroundColor = 'green'
+          setTimeout(()=>{closeLoginModal()},1000)
+        }
+    }catch(error){console.log(error)}
+  }
 
-    const checkUser=()=>{
-      const token = window.localStorage.getItem('Token')
-      if(token){
-        console.log('youre logged in')
-        const decoded = jwtDecode(token)
-        setUser(prev => prev = decoded)
-        console.log("decoded JWT", user)
-      }else{
-        console.log('you are not logged in')
-        setUser(prev => prev = {
-          username: "Guest",
-          avatarImg:"https://static.vecteezy.com/system/resources/previews/013/042/571/original/default-avatar-profile-icon-social-media-user-photo-in-flat-style-vector.jpg"
-        } )
-      }
-    }
-    const getAllPosts = async () => {
-      try{
-        const allPosts = await getPosts()
-        setPosts(prev => prev = allPosts.data)
-      }catch(error){console.log(error)}
-    }
+  const closeLoginModal = ()=>{
+    const loginModal = document.getElementById('loginModal')
+    loginModal.style.visibility = 'hidden'
+    setModalOpen(prev => prev = false)
+}
+
+  const handleSignout =()=>{
+    window.localStorage.removeItem('Token')
+  }
     
-    const getPostAndComments = async(e)=>{
-      const postModal = document.getElementById('postModal')
-      e.preventDefault(true)
-      try{
-        const postWComments = await postWithPopulatedComments(e.target.dataset._id)
-        setPostModalData(prev=>prev=postWComments.data)
-        // console.log(postWComments.data)
-        postModal.style.visibility = "visible"
-      }catch(error){console.log(error.message)}
-
+  const checkUser=()=>{
+    const token = window.localStorage.getItem('Token')
+    if(token){
+      console.log('youre logged in')
+      const decoded = jwtDecode(token)
+      setUser(prev => prev = decoded)
+      console.log("decoded JWT", user)
+    }else{
+      console.log('you are not logged in')
+      setUser(prev => prev = {
+        username: "Guest",
+        avatarImg:"https://static.vecteezy.com/system/resources/previews/013/042/571/original/default-avatar-profile-icon-social-media-user-photo-in-flat-style-vector.jpg"
+      } )
     }
+  }
+
+  const handleOpenAddPostModal = () =>{
+      const addPostModal = document.getElementById('addPostModal')
+      addPostModal.style.visibility='visible'
+    }
+
+  const getAllPosts = async () => {
+    try{
+      const allPosts = await getPosts()
+      setPosts(prev => prev = allPosts.data)
+    }catch(error){console.log(error)}
+  }
+
+  const getPostAndComments = async(e)=>{
+    const postModal = document.getElementById('postModal')
+    e.preventDefault(true)
+    try{
+      const postWComments = await postWithPopulatedComments(e.target.dataset._id)
+      setPostModalData(prev=>prev=postWComments.data)
+      console.log(postWComments.data)
+      postModal.style.visibility = "visible"
+    }catch(error){console.log(error.message)}
+
+  }
 
   useEffect(()=>{
     checkUser()
@@ -79,15 +117,15 @@ function App() {
 
   return (
     <div className="App" id='App'>
-      <Nav user = {user} handleAddPostModal={handleAddPostModal} HandleLoginModal={HandleLoginModal} />
-      <LogInModal setModalOpen={setModalOpen}/>
+      <Nav user = {user} handleOpenAddPostModal={handleOpenAddPostModal} openLoginModal={openLoginModal} handleSignout={handleSignout}/>
+      <LogInModal setModalOpen={setModalOpen} email={email} password={password} setEmail={setEmail} setPassword = {setPassword} handleLogin={handleLogin} closeLoginModal={closeLoginModal}/>
       <PostModal user = {user} getAllPosts={getAllPosts} setPostModalData={setPostModalData} postModalData={postModalData} />
       <AddPostModal user = {user}/>
       <Routes> 
         <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} getPostAndComments={getPostAndComments} setPosts={setPosts} posts={posts}/>}/>
         <Route path = '/signup' element={<SignupPage/>} />
-        <Route path = '/user' element={<UserHomepage user = {user} postModalRef={postModalRef} getPostAndComments={getPostAndComments}/>} />       
-        <Route path = '/user/settings' element={<UserStuff user = {user}/>} />
+        <Route path = '/user/:id' element={<UserHomepage user = {user} getPostAndComments={getPostAndComments}/>} postModalData={postModalData} setPostModalData={setPostModalData} />       
+        <Route path = '/user/settings/:id' element={<UserStuff user = {user}/>} />
       </Routes>
     </div>
   );

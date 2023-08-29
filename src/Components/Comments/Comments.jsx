@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './Comments.css'
-import {getUser} from '../../Services/UserServices/UserServices.js'
 
 export default function Comments({comment}) {
   
@@ -12,8 +11,8 @@ export default function Comments({comment}) {
         </div>
         <p className='commentText'>{comment.commentText}</p>
         <div className='actionButtonsContainer'>...
-            <div className='deleteButton'>delete</div>
-            <div className='editButton'>edit</div>
+            <div className='deleteButton commentActionButtons'>delete</div>
+            <div className='editButton commentActionButtons'>edit</div>
         </div>
     </div>
   )

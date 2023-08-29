@@ -33,3 +33,9 @@ export const postWithPopulatedComments =async(id)=>{
         await postAPI.get(`/postwcomments/${id}`)
     )
 }
+
+export const userPosts = async (id, postId)=>{
+    return(
+        await postAPI.get(`/userposts/${id}`, postId)
+    )
+}

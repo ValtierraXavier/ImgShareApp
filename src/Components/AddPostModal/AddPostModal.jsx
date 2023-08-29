@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import './AddPostModal.css'
 import {postPost, linkComment} from '../../Services/PostServices/PostServices.js'
+import { linkPostToUser } from '../../Services/UserServices/UserServices.js'
 
 export default function AddPostModal({user}) {
 
   const[title, setTitle] = useState('')
   const[url, setUrl] = useState('')
   const[caption, setCaption] = useState('')
-  // console.log(`title: ${title}\n url: ${url}\n caption: ${caption}`)
 
   const handleAddPost= async (e)=>{
     e.preventDefault(true)
@@ -20,7 +20,8 @@ export default function AddPostModal({user}) {
     }
     try{
       const sendPost = await postPost(newPost)
-      console.log(sendPost)
+      const newPostId = sendPost.data._id
+      const linkPost = await linkPostToUser(sendPost.data.poster ,{newPostId})
       addPostModal.style.visibility='hidden'
       setTitle(prev => prev = "")
       setUrl(prev => prev = "")
@@ -40,21 +41,13 @@ export default function AddPostModal({user}) {
           <div className="modalContent">            
             <h2 className='modalTitle'>Make a Post!</h2>
             <form className="addPostForm">
-              {/* <div className='inputLabelDiv'> */}
                 <label className='Label'>Title</label>
                 <input className='Input' type="text" onChange={(e)=>setTitle(prev=>prev=e.target.value)} value={title} ></input>
-              {/* </div> */}
-              {/* <div className='inputLabelDiv'> */}
                   <label className="Label" >url</label>
-                <input className='Input' type="text" onChange={(e)=>setUrl(prev=>prev=e.target.value)} value={url}></input>
-              {/* </div> */}
-              {/* <div className='inputLabelDiv'> */}
+                <input className='Input' type="text" onChange={(e)=>setUrl(prev=>prev=e.target.value)} value={url}></input>              
                 <label className="Label" >Caption</label>
-                <input className='Input' type="text" onChange={(e)=>setCaption(prev=>prev=e.target.value)} value={caption}></input>
-              {/* </div> */}
-              {/* <div> */}
+                <input className='Input' type="text" onChange={(e)=>setCaption(prev=>prev=e.target.value)} value={caption}></input>              
                 <input className='submitButton' type="submit" onClick={handleAddPost}></input>
-              {/* </div> */}
             </form>
           </div>
           </div> 

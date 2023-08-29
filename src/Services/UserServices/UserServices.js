@@ -34,3 +34,21 @@ export const updateUser = async (id, newCommentId)=>{
     }catch(error){console.log(error.message)}
 
 }
+
+export const linkPostToUser = async (id, body)=>{
+    return(
+        await usersAPI.put(`/linkpost/${id}`, body)
+    )
+}
+
+export const getAllUserPosts = async (id)=>{
+    return(
+        await usersAPI.get(`/userposts/${id}`)
+    )
+}
+
+export const getUserPosts = async(id)=>{
+    return(
+        await usersAPI.get(`/userposts/${id}`)
+    )
+}

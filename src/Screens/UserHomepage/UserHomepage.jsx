@@ -1,35 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './UserHomepage.css'
 import PostCard from '../../Components/PostCard/PostCard.jsx'
 import PostModal from '../../Components/PostModal/PostModal.jsx'
+import {getAllUserPosts} from '../../Services/UserServices/UserServices.js'
+import { postWithPopulatedComments } from '../../Services/PostServices/PostServices.js'
 
-export default function UserHomepage({}) {
+export default function UserHomepage({user, getPostAndComments, postModalData, setPostModalData}) {
+  const[userPosts, setUserPosts] = useState([])
 
-  const postsSamples = [
-  {
-    "title": "a title",
-    "caption": "a caption",
-    "url":"https://akm-img-a-in.tosshub.com/indiatoday/images/story/201412/fart_story_650_121414044341.jpg?size=690:388"
-  },
-  {
-    "title": "a title2",
-    "caption": "a caption2",
-    "url":"https://www.chiangmai-hospital.com/stocks/news/c710x400/ei/od/7shceiodapg/ตด.png"
-  },
-  {
-    "title": "a title3",
-    "caption": "a caption3",
-    "url":"https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2018-10/10034-farting_in_sleep-1296x728header.jpg?w=1155&h=1528"
-  }
-]
-  return (
+const postsSamples = []
+
+const getUserPosts = async()=>{
+  try{
+    const theUserPosts = await getAllUserPosts(user.id)
+    setUserPosts(prev => prev= theUserPosts.data.posts)
+    console.log(theUserPosts.data.posts)
+  }catch(error){console.log(error.message)}
+  
+}
+
+console.log(postModalData)
+
+
+useEffect(()=>{
+  getUserPosts()
+},{})
+
+return (
     <div className='userHomepage'>
       <h1 id='userHomepageLabel' className='pageLabel'>Your Page</h1>
-      {postsSamples?
+      {userPosts?
       <div id='userPostsMapContainer'>
-        {postsSamples.map((post, index)=>{
+        {userPosts.map((post, index)=>{
           return(
-            <PostCard key = {`uPC${index}`} id = 'userPostsCard' post={post}/>
+            <div key={`PCC${index}`} onClick={getPostAndComments} data-_id = {post._id}><PostCard  getUserPosts = {getUserPosts} key = {`uPC${index}`} id = 'userPostsCard' post={post}/></div>
           )
         })}
       </div>
