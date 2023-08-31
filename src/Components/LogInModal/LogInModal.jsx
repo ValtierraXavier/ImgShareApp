@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './LogInModal.css'
 
-export default function LogInModal({setModalOpen, email, setEmail, setPassword, handleLogin, password, closeLoginModal}) {
+export default function LogInModal({email, setEmail, setPassword, handleLogin, password, closeLoginModal}) {
     
+const waitForPassword =()=>{
+    const loginSubmitButton = document.getElementById('loginSubmitButton')
+    password === '' || email === '' ?
+    loginSubmitButton.disabled = true
+    :
+    loginSubmitButton.disabled = false
+}
 
+useEffect(()=>{
+    waitForPassword()
+},[password, email])
 
   return (
     <div className='loginModal' id='loginModal'>

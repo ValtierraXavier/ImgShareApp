@@ -2,7 +2,7 @@
     display:flex;
     position: fixed;
     visibility: hidden;
-    z-index: 900;
+    z-index: 700;
     border: solid black 1px;
     background-color: rgba(100,100,100,.7);
     height: 100vh;
@@ -20,7 +20,8 @@
     width: 50%;
     height: 50%;
     margin: 0 25%;
-    background-color: rgba(100,100,100,.85);
+    background-color: rgba(100,100,100,.8);
+    border-radius: 5px;
 }
 
 #loginSubmitButton{
@@ -56,6 +57,7 @@
 }
 
 .loginInput{
+    position: relative;
     box-sizing: border-box;
     border-radius: 5px;
     border: solid black 1px;
@@ -64,8 +66,16 @@
     font-size: 1.5rem;
     padding: 2px;
     margin: 5px 0px;
-    background-color: rgba(255,255,255,1);
-    transition: .5s ease-in-out .3,;
+    top: 2px;
+    left: 2px;
+    box-shadow: 0px 0px 0px;
+    transition: top .2s ease-in-out, left .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+.loginInput:focus{
+    top: 0px;
+    left: 0px;
+    box-shadow: 2px 2px 4px;
 }
 
 
@@ -80,7 +90,6 @@
     border-radius: 200px;
     height:2.5rem;
     padding: 5px;
-    /* background-color: white; */
     color: black;
-    transition: .1s ease-in-out 0s;
+    transition: .1s ease-in-out;
 }

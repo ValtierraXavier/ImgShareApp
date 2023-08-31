@@ -18,3 +18,10 @@
     top: 70px;
     left: 10px;
 }
+
+.noPost{
+    position: absolute;
+    justify-self: center;
+    align-self: center;
+
+}

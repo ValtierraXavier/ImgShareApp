@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import './PostModal.css'
 import Comments from '../Comments/Comments.jsx'
-import { postComment, getComments } from '../../Services/CommentServices/CommentServices.js'
-import {getUser, updateUser} from '../../Services/UserServices/UserServices.js'
-import {linkCommentToPost, postWithPopulatedComments, getPost, getPosts} from '../../Services/PostServices/PostServices.js'
+import { postComment } from '../../Services/CommentServices/CommentServices.js'
+import {updateUser} from '../../Services/UserServices/UserServices.js'
+import {linkCommentToPost} from '../../Services/PostServices/PostServices.js'
 
-export default function PostModal({getAllPosts, setPostModalData, postModalData, user}) {
+export default function PostModal({getPostAndComments, setPostModalData, postModalData, user}) {
     
     const[commentText, setCommentText] = useState('')
 
@@ -23,7 +23,7 @@ export default function PostModal({getAllPosts, setPostModalData, postModalData,
         const postModal = document.getElementById('postModal')
 
         const comment ={
-            commentAuthor:user.id,
+            commentAuthor:user?user.id:null,
             commentText: commentText,
             whatPost: e.target.dataset.post_id
         }
@@ -34,7 +34,7 @@ export default function PostModal({getAllPosts, setPostModalData, postModalData,
             const addCommentIdToUser = await updateUser(user.id, {newCommentId})
             const addCommentIdToPost = await linkCommentToPost(e.target.dataset.post_id, {newCommentId})
             setCommentText(prev => prev = '')
-            getAllPosts()
+            getPostAndComments(e)
         }catch(error){console.log(error.message)}
 
     }
@@ -57,21 +57,24 @@ export default function PostModal({getAllPosts, setPostModalData, postModalData,
                     <h2 className='commentsContainerBanner'>Comments</h2>
                 </div>
                 <div className= 'commentsContainerMap'>
-                {
-                    postModalData.postComments?.map((comment, index)=>{
+                {postModalData.postComments && postModalData.postComments.length !== 0 ?
+                    postModalData.postComments.map((comment, index)=>{
                         return(
                             <div key={`CsC${index}`}>
-                                <Comments comment={comment} key ={`commentItself${index}`}  />
+                                <Comments comment={comment} key ={`commentItself${index}`} />
                             </div>
-                            )
-                        })
+                            )})
+                            :  <div>
+                            <h2> Be the first to comment</h2>
+
+                        </div>
                     }
                 </div>
             <div></div>
             <form id ='commentForm' >
                 <label>Comment Here</label>
                 <textarea className ='commentsTextArea' onChange={(e)=>setCommentText(prev => prev = e.target.value)} value = {commentText} type= 'text' ></textarea>
-                <input onClick={handleMakeComment} data-post_id = {postModalData._id} data-user_id = {user.id} type = 'submit' id = 'makeCommentButton'></input>
+                <input onClick={handleMakeComment} data-post_id = {postModalData._id} data-user_id = {user?user.id:null} type = 'submit' id = 'makeCommentButton'></input>
             </form>
             </div>
         </div>

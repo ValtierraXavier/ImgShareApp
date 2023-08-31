@@ -2,7 +2,6 @@ import React from 'react'
 import './PostCard.css'
 
 export default function PostCard({post, userPosts}) {
-    const caption = 'Some Random Caption that i am going to add a bunch of text to so that i can see how itl look. what do i do now when all the text is sitting at the bottom of the container? i dont know why this is so hard to style right now. its literally just a box with 4 things in it.'
 
    
   return (
@@ -10,7 +9,7 @@ export default function PostCard({post, userPosts}) {
       <div id = 'postCard'>
         <div id='imgContainer'>
           <h2 onClick={userPosts} className= 'cardTitle'  data-_id = {post._id}>{post.title}</h2>
-          <img onClick={userPosts} height='240px' id = "postImg" src = {post.url} data-_id = {post._id}></img>
+          <img onClick={userPosts} height='300px' width='400px' id = "postImg" src = {post.url} data-post_id = {post._id}></img>
           <div onClick={userPosts} id = 'caption' data-_id = {post._id}>{post.caption} </div>     
         </div>
         <div id = 'likesButtonContainer'>

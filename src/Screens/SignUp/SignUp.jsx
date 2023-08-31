@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { signUp } from '../../Services/UserServices/UserServices.js'
 import './SignUp.css'
 
@@ -17,8 +18,10 @@ export default function SignupPage() {
             password: password
         }
         try{
-           const userToken = await signUp(newUser)
-           console.log(userToken.data)
+            const userToken = await signUp(newUser)
+            window.localStorage.setItem('Token', `Bearer ${userToken.data.token}`)
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + userToken.data.token;
+            console.log(userToken.data)
         //    document.cookie = `token = ${data.data.token}`
         //    console.log(document.cookie)
         }catch(error){console.log(error)}   
@@ -50,20 +53,24 @@ export default function SignupPage() {
   
   return (
     <div className='signupPageContainer'>
-        <h2>Sign Up!</h2>
-        <form onSubmit={handleSignup} className='signupForm'>
-            <label className='formLabels'>Email</label>
-            <input type='text' className='signupInput' id='signupNameInput' onChange={(e)=>setEmail(prev=>prev=e.target.value)} value={email}></input>
-            <label className='formLabels'>Username</label>
-            <input type='text' className='signupInput' id='signupUsernameInput' onChange={(e)=>setUserName(prev=>prev=e.target.value)} value={userName}></input>
-            <label className='formLabels'>Password</label>
-            <input type='password' className='signupInput' id='signupPasswordInput' onChange={(e)=>setPassword(prev=>prev=e.target.value)} value={password}></input>
-            <label className='formLabels' id ='passwordConfirm'>{passMatch}</label>
-            {/* <label id= 'passwordWarning'>passwords do not match</label>
-            <label id='passwordGood'>they match</label> */}
-            <input type='password' className='signupInput' id='signupPasswordConfirmInput' onChange={(e)=>setPasswordConfirm(prev=>prev= e.target.value)} value={passwordConfirm}></input>
-            <input type='submit' className='signupInput' id='signupButton'></input>
-        </form>
+        <div className='signupIsland'>
+            <div className='islandLabelContainer'>
+                <h2 className='islandLabel'>Sign Up!</h2>
+            </div>
+            <div>
+            <form onSubmit={handleSignup} className='signupForm'>
+                <label className='formLabels'>Email</label>
+                <input required={true} req type='text' className='signupInput' id='signupNameInput' onChange={(e)=>setEmail(prev=>prev=e.target.value)} value={email}></input>
+                <label className='formLabels'>Username</label>
+                <input type='text' className='signupInput' id='signupUsernameInput' onChange={(e)=>setUserName(prev=>prev=e.target.value)} value={userName}></input>
+                <label className='formLabels'>Password</label>
+                <input type='password' className='signupInput' id='signupPasswordInput' onChange={(e)=>setPassword(prev=>prev=e.target.value)} value={password}></input>
+                <label className='formLabels' id ='passwordConfirm'>{passMatch}</label>
+                <input type='password' className='signupInput' id='signupPasswordConfirmInput' onChange={(e)=>setPasswordConfirm(prev=>prev= e.target.value)} value={passwordConfirm}></input>
+                <input type='submit' className='signupInput' id='signupButton'></input>
+            </form>
+        </div>
+        </div>        
     </div>
   )
 }

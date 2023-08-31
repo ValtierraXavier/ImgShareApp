@@ -1,8 +1,5 @@
-import React, {useState}from 'react'
-import { Link, Routes, Route } from 'react-router-dom'
+import React from 'react'
 import PostCard from '../../Components/PostCard/PostCard.jsx'
-import PostModal from '../../Components/PostModal/PostModal.jsx'
-import { getPost, postWithPopulatedComments } from '../../Services/PostServices/PostServices.js'
 import './Landing.css'
 
 export default function Landing({posts ,setPosts, setPostModalData, getPostAndComments}) {
