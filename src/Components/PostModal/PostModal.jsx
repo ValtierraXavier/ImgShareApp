@@ -20,7 +20,9 @@ export default function PostModal({getPostAndComments, setPostModalData, postMod
     const handleMakeComment=async(e)=>{
         e.preventDefault(false)
 
-        const postModal = document.getElementById('postModal')
+        const commentBox = document.getElementById('commentsContainerMap')
+        const CommentBoxHeight= commentBox.scrollHeight
+        console.log(CommentBoxHeight)
 
         const comment ={
             commentAuthor:user?user.id:null,
@@ -35,6 +37,7 @@ export default function PostModal({getPostAndComments, setPostModalData, postMod
             const addCommentIdToPost = await linkCommentToPost(e.target.dataset.post_id, {newCommentId})
             setCommentText(prev => prev = '')
             getPostAndComments(e)
+            setTimeout(()=>{commentBox.scrollTop = CommentBoxHeight},450)
         }catch(error){console.log(error.message)}
 
     }
@@ -56,7 +59,7 @@ export default function PostModal({getPostAndComments, setPostModalData, postMod
                 <div id ='postModalBanner'>
                     <h2 className='commentsContainerBanner'>Comments</h2>
                 </div>
-                <div className= 'commentsContainerMap'>
+                <div className= 'commentsContainerMap' id='commentsContainerMap'>
                 {postModalData.postComments && postModalData.postComments.length !== 0 ?
                     postModalData.postComments.map((comment, index)=>{
                         return(
