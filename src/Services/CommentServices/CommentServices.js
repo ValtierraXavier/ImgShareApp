@@ -16,9 +16,13 @@ export const postComment = async(commentBody)=>{
 }
 
 export const updateComment = async(id, body)=>{
-    await commentsAPI.put(`/update/${id}`, body)
+    return(
+        await commentsAPI.put(`/update/${id}`, body)
+    )
 }
 
 export const deleteComment = async(id)=>{
-    await commentsAPI.delete(`/delete/${id}`)
+    return(
+        await commentsAPI.delete(`/delete/${id}`)
+    )
 }

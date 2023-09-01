@@ -24,6 +24,8 @@
     align-items: center;
     justify-content: space-around;
     width: 25%;
+    text-decoration: none;
+    color: black;
 }
 
 .homeAndPost{
@@ -32,6 +34,7 @@
     align-items: center;
     justify-content: space-around;
     width: 25%;    
+    text-decoration:none;
 }
 
 .signInButtons{
@@ -41,4 +44,20 @@
     width: 25%;
     margin: 0 1;
     justify-content: space-around;
+    text-decoration: none;
+}
+
+.signUpButton{
+    text-decoration: none;
+    color: black;
+}
+
+.homeButton{
+    text-decoration: none;
+    color: black;
+}
+
+.userName{
+    text-decoration: none;
+    color: black;
 }

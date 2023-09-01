@@ -5,7 +5,7 @@ import { postComment } from '../../Services/CommentServices/CommentServices.js'
 import {updateUser} from '../../Services/UserServices/UserServices.js'
 import {linkCommentToPost} from '../../Services/PostServices/PostServices.js'
 
-export default function PostModal({getPostAndComments, setPostModalData, postModalData, user}) {
+export default function PostModal({getPostAndComments, setPostModalData, postModalData, user, openEditCommentModal, editComment, setEditComment, setEditCommentText, editCommentText}) {
     
     const[commentText, setCommentText] = useState('')
 
@@ -22,8 +22,6 @@ export default function PostModal({getPostAndComments, setPostModalData, postMod
 
         const commentBox = document.getElementById('commentsContainerMap')
         const CommentBoxHeight= commentBox.scrollHeight
-        console.log(CommentBoxHeight)
-
         const comment ={
             commentAuthor:user?user.id:null,
             commentText: commentText,
@@ -37,9 +35,8 @@ export default function PostModal({getPostAndComments, setPostModalData, postMod
             const addCommentIdToPost = await linkCommentToPost(e.target.dataset.post_id, {newCommentId})
             setCommentText(prev => prev = '')
             getPostAndComments(e)
-            setTimeout(()=>{commentBox.scrollTop = CommentBoxHeight},450)
+            setTimeout(()=>{commentBox.scrollTop = CommentBoxHeight},350)
         }catch(error){console.log(error.message)}
-
     }
 
   return (
@@ -49,7 +46,9 @@ export default function PostModal({getPostAndComments, setPostModalData, postMod
                 <div id = 'postModalBanner'>
                     <h2 className='postModalTitle'>{postModalData.title? postModalData.title:"Title"}</h2>
                 </div>
-                <img  src={postModalData.url? postModalData.url: 'https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg'} className='postModalImg'></img>
+                <div className='imgContainer'>
+                    <img  src={postModalData.url? postModalData.url: 'https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg'} className='postModalImg'></img>
+                </div>
                 <div className='captionAndLikesContainer'>
                     <div className='postModalCaption'>{postModalData.caption? postModalData.caption:'caption asfoiasfoksnfasoifnsof afi asfoasi fsaoif safoias fosaif safbasof safas fosajf saofj safoasf oasfu saoajs ofas fsa faosf saofj asof asfosa fsa foasf aof saofis foasf saof saofsa fosa fosa fsaof saof sfoasfjosaof saf safojf asojsa fosaj fsaojf saof saojf safojsa foasf asof fojas foasjf o'}</div>
                     <div className='postModalLikeButton'>Likes</div>
@@ -64,7 +63,7 @@ export default function PostModal({getPostAndComments, setPostModalData, postMod
                     postModalData.postComments.map((comment, index)=>{
                         return(
                             <div key={`CsC${index}`}>
-                                <Comments comment={comment} key ={`commentItself${index}`} />
+                                <Comments getPostAndComments={getPostAndComments} postId = {postModalData._id} comment={comment} key ={`commentItself${index}`} user ={user} editComment={editComment} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText}/>
                             </div>
                             )})
                             :  <div>

@@ -39,8 +39,16 @@
     color:black;
 }
 
-.postModalImg{
+.imgContainer{
+    position: relative;
     height: 280px;
+}
+
+.postModalImg{
+    position: relative;
+    height: 100%;
+    width:100%;
+    object-fit: scale-down;
 }
 
 .captionAndLikesContainer{
@@ -82,10 +90,8 @@
 .commentsContainerMap{
     display: flex;
     flex-flow: column nowrap;
-    /* justify-content: center; */
     position: relative;
     height: 300px;
-    /* border: solid red; */
     box-sizing: border-box;
     overflow-y: auto;
     padding: 10px;

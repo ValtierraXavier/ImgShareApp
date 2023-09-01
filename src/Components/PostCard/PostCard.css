@@ -10,6 +10,7 @@
     flex-flow: column nowrap;
     position: relative;
     width: 400px;
+    height: 300px;
     /* border: solid black; */
 }
 
@@ -55,7 +56,10 @@
 
 #postImg{
     position: relative;
-    border-radius:10px 10px 10px 10px;
+    border-radius: 10px;
+    height: 100%;
+    width:100%;
+    object-fit: cover;
 }
 
 #likesButton{

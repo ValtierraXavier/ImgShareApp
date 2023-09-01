@@ -52,3 +52,10 @@ export const getUserPosts = async(id)=>{
         await usersAPI.get(`/userposts/${id}`)
     )
 }
+
+export const unlinkCommentFromUser = async(id, body)=>{
+    console.log(body, 'from unlinkcommentfromuser')
+    return(
+        await usersAPI.put(`/unlinkcomment/${id}`, body)
+    )
+}

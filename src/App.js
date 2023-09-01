@@ -11,7 +11,8 @@ import UserHomepage from './Screens/UserHomepage/UserHomepage.jsx';
 import UserStuff from './Screens/userStuff/UserStuff.jsx';
 import PostModal from './Components/PostModal/PostModal.jsx';
 import AddPostModal from './Components/AddPostModal/AddPostModal.jsx';
-import {getPosts, postWithPopulatedComments, postPost} from './Services/PostServices/PostServices.js'
+import EditCommentModal from './Components/EditCommentModal/EditCommentModal.jsx';
+import {getPosts, postWithPopulatedComments, postPost} from './Services/PostServices/PostServices.js';
 import { signIn, linkPostToUser } from './Services/UserServices/UserServices.js';
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
   const[caption, setCaption] = useState('')
   const[loadAllPosts, setLoadAllPosts]= useState(true)
   const[loadUserPosts, setLoadUserPosts]=useState(false)
+  const[editComment, setEditComment]=useState(null)
+  const[editCommentText, setEditCommentText] = useState(null)
   const navigate = useNavigate()
 
         
@@ -164,7 +167,7 @@ function App() {
     try{
       const postWComments = await postWithPopulatedComments(e.target.dataset.post_id)
       setPostModalData(prev=>prev=postWComments.data)
-      console.log(postWComments.data)
+      // console.log(postWComments.data)
       postModal.style.visibility = "visible"
     }catch(error){console.log(error.message)}
 
@@ -177,9 +180,10 @@ function App() {
   return (
     <div className="App" id='App'>
       <Nav user = {user} handleOpenAddPostModal={handleOpenAddPostModal} openLoginModal={openLoginModal} handleSignout={handleSignout}/>
-      <LogInModal setModalOpen={setModalOpen} email={email} password={password} setEmail={setEmail} setPassword = {setPassword} handleLogin={handleLogin} closeLoginModal={closeLoginModal}/>
-      <PostModal user = {user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments} />
+      <LogInModal setModalOpen={setModalOpen} email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin} closeLoginModal={closeLoginModal}/>
+      <PostModal setEditComment={setEditComment} editComment={editComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} user={user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments}  />
       <AddPostModal handleOpenAddPostModal={handleOpenAddPostModal} handleCloseAddPostModal={handleCloseAddPostModal} setTitle={setTitle} title ={title} setUrl={setUrl} url ={url} setCaption={setCaption} caption ={caption} handleAddPost={handleAddPost} user = {user}/>
+      <EditCommentModal user={user} editComment={editComment} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} getPostAndComments={getPostAndComments}/>
       <Routes> 
         <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} getPostAndComments={getPostAndComments} setPosts={setPosts} posts={posts}/>}/>
         <Route path = '/signup' element={<SignupPage/>} />

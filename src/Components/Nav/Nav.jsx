@@ -14,19 +14,16 @@ export default function Nav({openLoginModal, user, handleOpenAddPostModal, handl
                     <NavLink to = {`/user/${user.id}`}>
                         <img height = "45rem" src={`${user.avatarImg}`}></img>
                     </NavLink>
-                    <NavLink to = {`/user/${user.id}`}>
-                        <div>{user.username}</div>
+                    <NavLink className='userName' to = {`/user/${user.id}`}>
+                        <div >{user.username}</div>
                     </NavLink>
                 </div>
                 <div className='homeAndPost'>
-                    <NavLink to = '/'>Home</NavLink>
+                    <NavLink className='homeButton' to = '/'>Home</NavLink>
                     <div className='postButton' onClick={handleOpenAddPostModal}>Make a Post!</div>
                 </div>    
                 <div  className = 'signInButtons'>
                     <div onClick={handleSignout}  className = 'signOutButton'>Sign Out</div>
-                    <div className='signupButtonContainer'>
-                        <Link to='/signup' className = 'signUpButton'>Sign Up</Link>
-                    </div>
                 </div>
             </div>
             :
@@ -36,12 +33,12 @@ export default function Nav({openLoginModal, user, handleOpenAddPostModal, handl
                     <div>Guest</div>
                 </div>
                 <div className='homeAndPost'>
-                    <NavLink to = '/'>Home</NavLink> 
+                    <NavLink className='homeButton' to = '/'>Home</NavLink> 
                 </div> 
                     <div  className = 'signInButtons'>
                         <div onClick ={openLoginModal} className = 'signInButton'>Sign In</div>
                         <div className='signupButtonContainer'>
-                            <Link to='/signup' className = 'signUpButton'>Sign Up</Link>
+                            <Link  to='/signup' className = 'signUpButton'>Sign Up</Link>
                         </div>
                     </div>        
             </div>
