@@ -31,7 +31,7 @@ export default function Comments({ handleEditComment, comment , postId, user, ge
   return (
     
    <div className='Comments'>  
-    {user.id === comment.commentAuthor._id ?
+    {(user?user.id:'') === comment.commentAuthor._id ?
       <div className='eachCommentContainer' data-id = {comment._id} >
         <div className='commentDetails'>
         <div className='nameDiv'>{comment.commentAuthor.userName}</div>

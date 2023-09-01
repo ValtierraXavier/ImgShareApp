@@ -30,7 +30,7 @@ export default function Nav({openLoginModal, user, handleOpenAddPostModal, handl
             <div className = 'nav'>
                 <div className = 'navUserDetail'>
                     <img height = "45rem" src='https://www.pngitem.com/pimgs/m/137-1370051_avatar-generic-avatar-hd-png-download.png'></img>
-                    <div>Guest</div>
+                    <div>Browsing as a Guest</div>
                 </div>
                 <div className='homeAndPost'>
                     <NavLink className='homeButton' to = '/'>Home</NavLink> 
