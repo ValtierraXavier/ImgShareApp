@@ -4,14 +4,17 @@ import Comments from '../Comments/Comments.jsx'
 import { postComment } from '../../Services/CommentServices/CommentServices.js'
 import {updateUser} from '../../Services/UserServices/UserServices.js'
 import {linkCommentToPost} from '../../Services/PostServices/PostServices.js'
+import PostLikes from '../PostLikes/PostLikes.jsx'
 
-export default function PostModal({getPostAndComments, setPostModalData, postModalData, user, openEditCommentModal, editComment, setEditComment, setEditCommentText, editCommentText}) {
+export default function PostModal({ getAllPosts, getPostAndComments, setPostModalData, postModalData, user, openEditCommentModal, editComment, setEditComment, setEditCommentText, editCommentText, loadUserPosts, setLoadUserPosts}) {
     
-    const[commentText, setCommentText] = useState('')
+
+
+    const[commentText, setCommentText] = useState("")
 
     const closePostModal=()=>{
         const postModal = document.getElementById('postModal')
-        console.log(postModalData)
+        console.log(postModalData.likes)
         postModal.style.visibility = 'hidden'
         setCommentText(prev => prev = '')
         setPostModalData(prev => prev = {})
@@ -27,17 +30,25 @@ export default function PostModal({getPostAndComments, setPostModalData, postMod
             commentText: commentText,
             whatPost: e.target.dataset.post_id
         }
-
+        
         try{
-            const newComment = await postComment(comment)
-            const newCommentId = newComment.newComment.data
-            const addCommentIdToUser = await updateUser(user.id, {newCommentId})
-            const addCommentIdToPost = await linkCommentToPost(e.target.dataset.post_id, {newCommentId})
-            setCommentText(prev => prev = '')
-            getPostAndComments(e)
-            setTimeout(()=>{commentBox.scrollTop = CommentBoxHeight},350)
+            if(user){
+                const newComment = await postComment(comment)
+                const newCommentId = newComment.newComment.data
+                await updateUser(user.id, {newCommentId})
+                await linkCommentToPost(e.target.dataset.post_id, {newCommentId})
+                setCommentText(prev => prev = '')
+                getPostAndComments(e)
+                setTimeout(()=>{commentBox.scrollTop = CommentBoxHeight},350)
+            }else if(!user){
+                window.alert('Cant comment...Please log in')
+            }
+            
         }catch(error){console.log(error.message)}
+        
     }
+
+        
 
   return (
     <div className='postModal' id ='postModal'>
@@ -51,19 +62,22 @@ export default function PostModal({getPostAndComments, setPostModalData, postMod
                 </div>
                 <div className='captionAndLikesContainer'>
                     <div className='postModalCaption'>{postModalData.caption? postModalData.caption:'caption asfoiasfoksnfasoifnsof afi asfoasi fsaoif safoias fosaif safbasof safas fosajf saofj safoasf oasfu saoajs ofas fsa faosf saofj asof asfosa fsa foasf aof saofis foasf saof saofsa fosa fosa fsaof saof sfoasfjosaof saf safojf asojsa fosaj fsaojf saof saojf safojsa foasf asof fojas foasjf o'}</div>
-                    <div className='postModalLikeButton'>Likes</div>
+                    <div >
+                        <PostLikes postlikes = {postModalData.likes?postModalData.likes:[]} user={user}  post_id = {postModalData._id} getAllPosts={getPostAndComments}/>
+                    </div>
                 </div>
             </div>
             <div className='commentsContainer'>
                 <div id ='postModalBanner'>
                     <h2 className='commentsContainerBanner'>Comments</h2>
+                    <div onClick={closePostModal} id='closeButton'> Close</div>
                 </div>
                 <div className= 'commentsContainerMap' id='commentsContainerMap'>
                 {postModalData.postComments && postModalData.postComments.length !== 0 ?
                     postModalData.postComments.map((comment, index)=>{
                         return(
                             <div key={`CsC${index}`}>
-                                <Comments getPostAndComments={getPostAndComments} postId = {postModalData._id} comment={comment} key ={`commentItself${index}`} user ={user} editComment={editComment} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText}/>
+                                <Comments getPostAndComments={getPostAndComments} postId = {postModalData._id} comment={comment} key ={`commentItself${index}`} user ={user} editComment={editComment} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} loadUserPosts={loadUserPosts} setLoadUserPosts={setLoadUserPosts}/>
                             </div>
                             )})
                             :  <div>
@@ -74,13 +88,18 @@ export default function PostModal({getPostAndComments, setPostModalData, postMod
                 </div>
             <div></div>
             <form id ='commentForm' >
-                <label>Comment Here</label>
-                <textarea className ='commentsTextArea' onChange={(e)=>setCommentText(prev => prev = e.target.value)} value = {commentText} type= 'text' ></textarea>
-                <input onClick={handleMakeComment} data-post_id = {postModalData._id} data-user_id = {user?user.id:null} type = 'submit' id = 'makeCommentButton'></input>
+                <label>Say Something</label>
+                    <textarea className ='commentsTextArea' onChange={(e)=>setCommentText(prev => prev = e.target.value)} value = {commentText} type= 'text' ></textarea>
+                {commentText?
+                    <input onClick={handleMakeComment} data-post_id = {postModalData._id} data-user_id = {user?user.id:null} type = 'submit' id = 'makeCommentButton'></input>
+                    :
+                    <input onClick={handleMakeComment} disabled data-post_id = {postModalData._id} data-user_id = {user?user.id:null} type = 'submit' id = 'makeCommentButton'></input>
+
+                }
             </form>
             </div>
         </div>
-        <div onClick={closePostModal} id='closeButton'> Close</div>
+        
     </div>
   )
 }

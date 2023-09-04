@@ -3,19 +3,19 @@ import './Comments.css'
 import {deleteComment} from '../../Services/CommentServices/CommentServices.js'
 import { unlinkCommentFromPost } from '../../Services/PostServices/PostServices.js'
 import { unlinkCommentFromUser } from '../../Services/UserServices/UserServices.js'
+import CommentLikes from '../CommentLikes/CommentLikes.jsx'
 
-export default function Comments({ handleEditComment, comment , postId, user, getPostAndComments, editComment, setEditComment, editCOmmetText, setEditCommentText}) {
+export default function Comments({ comment , postId, user, getPostAndComments, setEditComment, editCommentText, setEditCommentText}) {
 
 
   const handleDeleteComment= async(e)=>{
     const commentId = e.target.dataset.commentid
     const authorId = e.target.dataset.authorid
     try{
-      console.log(commentId)
-      const deleteAComment = await deleteComment(commentId)
-      const thepost = await unlinkCommentFromPost(postId, {commentId})
-      const theUser = await unlinkCommentFromUser(authorId, {commentId})
-      await getPostAndComments(e)
+      await deleteComment(commentId)
+      await unlinkCommentFromPost(postId, {commentId})
+      await unlinkCommentFromUser(authorId, {commentId})
+      getPostAndComments(e)
     }catch(error){console.log(error.message)}
   }
 
@@ -38,7 +38,8 @@ export default function Comments({ handleEditComment, comment , postId, user, ge
         <div className='timeSincePost'>1day</div>
         </div>
         <p className='commentText'>{comment.commentText}</p>
-        <div className='actionButtonsContainer'>...
+        <div className='actionButtonsContainer'>
+          <CommentLikes comment={comment} postId={postId} user={user} getPostAndComments={getPostAndComments} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText}/>
           <div className='deleteButton commentActionButtons' data-commentid = {comment._id} data-authorid={comment.commentAuthor._id} data-post_id= {postId} onClick={handleDeleteComment} >Delete</div>
           <div className='editButton commentActionButtons' data-id = {comment._id} data-commenttext={comment.commentText} onClick={openEditCommentModal}>Edit</div>
         </div>
@@ -50,7 +51,9 @@ export default function Comments({ handleEditComment, comment , postId, user, ge
       <div className='timeSincePost'>1day</div>
       </div>
       <p className='commentText'>{comment.commentText}</p>
-      <div className='actionButtonsContainer'>...</div>
+      <div className='actionButtonsContainer'>...
+        <CommentLikes comment={comment} postId={postId} user={user} getPostAndComments={getPostAndComments} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText}/>
+      </div>
     </div>
     }  
    </div>

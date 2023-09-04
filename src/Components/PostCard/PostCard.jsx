@@ -1,5 +1,6 @@
 import React from 'react'
 import './PostCard.css'
+import PostLikes from '../PostLikes/PostLikes.jsx'
 
 export default function PostCard({post, userPosts}) {
 
@@ -11,9 +12,6 @@ export default function PostCard({post, userPosts}) {
           <h2 onClick={userPosts} className= 'cardTitle'  data-post_id = {post._id}>{post.title}</h2>
           <img onClick={userPosts}  id = "postImg" src = {post.url} data-post_id = {post._id}></img>
           <div onClick={userPosts} id = 'caption' data-post_id = {post._id}>{post.caption} </div>     
-        </div>
-        <div id = 'likesButtonContainer'>
-            <div id = 'likesButton'>Likes</div>  
         </div>
       </div>
     </div>

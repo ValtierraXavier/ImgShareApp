@@ -59,3 +59,15 @@ export const unlinkCommentFromUser = async(id, body)=>{
         await usersAPI.put(`/unlinkcomment/${id}`, body)
     )
 }
+
+export const addPostLike = async(id, body)=>{
+    return(
+        await usersAPI.put(`/postlike/${id}`, body)
+    )
+}
+
+export const addCommentLike = async(id, body)=>{
+    return(
+        await usersAPI.put(`/commentlike/${id}`, body)
+    )
+}

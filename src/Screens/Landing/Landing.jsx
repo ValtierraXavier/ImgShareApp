@@ -1,21 +1,30 @@
 import React from 'react'
 import PostCard from '../../Components/PostCard/PostCard.jsx'
+import PostLikes from '../../Components/PostLikes/PostLikes.jsx'
 import './Landing.css'
 
-export default function Landing({posts ,setPosts, setPostModalData, getPostAndComments}) {
-
+export default function Landing({user, posts ,setPosts, postModalData, setPostModalData, getPostAndComments, getAllPosts}) {
   return (
     <div className ='landingContainer'>
       <h1 id='homeLabel' className='pageLabel'>Home</h1>
-    {posts.length?
+    {posts?
       <div id ='postCardMapContainer'>{
       posts.map((post, index)=>{
-        return(<div key={`PCC${index}`} onClick={getPostAndComments} data-_id = {post._id}><PostCard key={`PU${index}`} post={post}/></div>)
+        return(
+          <div key={`lMC${index}`}>
+            <div key={`PCC${index}`} onClick={getPostAndComments} data-_id = {post._id}>
+              <PostCard key={`PU${index}`} post={post}/>
+            </div>
+            <div key={`lBC${index}`} id = 'likesButtonContainer' postlikes = {post.likes}>
+              <PostLikes key ={`pL${index}`} id = 'likesButton' postlikes = {post.likes} user={user} post_id = {post._id} getAllPosts={getAllPosts} postModalData={postModalData?postModalData:{}}/>  
+            </div>
+        </div>
+        )
       })
       }</div>
       :<div id ='homepageLoading'>
           <h1 id ='loading' >Loading...</h1>
-        </div>
+      </div>
     }    
   <div>
   </div>

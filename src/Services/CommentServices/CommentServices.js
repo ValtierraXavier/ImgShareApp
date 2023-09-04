@@ -26,3 +26,9 @@ export const deleteComment = async(id)=>{
         await commentsAPI.delete(`/delete/${id}`)
     )
 }
+
+export const addLikeToComment = async(id , body)=>{
+    return(
+        await commentsAPI.put(`/commentlike/${id}`, body)
+    )
+}

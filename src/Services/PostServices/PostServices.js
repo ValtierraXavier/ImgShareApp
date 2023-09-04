@@ -46,3 +46,9 @@ export const unlinkCommentFromPost = async(id, body)=>{
         await postAPI.put(`/unlinkcomment/${id}`, body)
     )
 }
+
+export const addLikeToPost = async(id, body)=>{
+    return(
+        await postAPI.put(`/postlike/${id}`, body)
+    )
+}

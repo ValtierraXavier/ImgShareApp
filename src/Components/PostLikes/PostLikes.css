@@ -1,0 +1,9 @@
+.postLikes{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.postLikesCounter{
+    font-size: .7rem;
+}

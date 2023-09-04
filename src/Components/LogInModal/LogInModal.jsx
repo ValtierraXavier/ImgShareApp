@@ -28,8 +28,8 @@ useEffect(()=>{
                     <input type='submit' id='loginSubmitButton'></input>
                 </form>
             </div>
+            <div onClick={closeLoginModal} id = 'loginModalCloseButton'>Close</div>
         </div>
-        <div onClick={closeLoginModal} id = 'loginModalCloseButton'>Close</div>
     </div>
   )
 }

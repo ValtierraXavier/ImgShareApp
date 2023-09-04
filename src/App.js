@@ -20,17 +20,16 @@ function App() {
   const[modalOpen, setModalOpen] = useState(false)
   const[postModalData, setPostModalData] = useState({})
   const[posts, setPosts] = useState([])
-  const[user, setUser] = useState(null)
-  const [isLoading, setIsLaoding] =useState(true)
+  const[user, setUser] = useState({})
+  const[isLoading, setIsLaoding] =useState(true)
   const[email, setEmail] = useState('')
   const[password, setPassword] = useState('')
   const[title, setTitle] = useState('')
   const[url, setUrl] = useState('')
   const[caption, setCaption] = useState('')
   const[loadAllPosts, setLoadAllPosts]= useState(true)
-  const[loadUserPosts, setLoadUserPosts]=useState(false)
   const[editComment, setEditComment]=useState(null)
-  const[editCommentText, setEditCommentText] = useState(null)
+  const[editCommentText, setEditCommentText] = useState("")
   const navigate = useNavigate()
 
         
@@ -74,6 +73,7 @@ function App() {
           loginSubmitButton.style.backgroundColor = 'green'
           setTimeout(()=>{closeLoginModal()},1000)
           }
+          getAllPosts()
     }catch(error){console.log(error)}
   }
 
@@ -93,6 +93,7 @@ function App() {
       email: ""
     })
     checkUser()
+    getAllPosts()
     redirect('/')
   }
   
@@ -163,11 +164,13 @@ function App() {
   }
 
   const getPostAndComments = async(e)=>{
+    // console.log(e.target)
     const postModal = document.getElementById('postModal')
+    // console.log(e.target.dataset)
     try{
       const postWComments = await postWithPopulatedComments(e.target.dataset.post_id)
       setPostModalData(prev=>prev=postWComments.data)
-      // console.log(postWComments.data)
+      console.log(postModalData)
       postModal.style.visibility = "visible"
     }catch(error){console.log(error.message)}
 
@@ -181,13 +184,13 @@ function App() {
     <div className="App" id='App'>
       <Nav user = {user} handleOpenAddPostModal={handleOpenAddPostModal} openLoginModal={openLoginModal} handleSignout={handleSignout}/>
       <LogInModal setModalOpen={setModalOpen} email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin} closeLoginModal={closeLoginModal}/>
-      <PostModal setEditComment={setEditComment} editComment={editComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} user={user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments}  />
+      <PostModal setEditComment={setEditComment} editComment={editComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} user={user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments} getAllPosts={getAllPosts}/>
       <AddPostModal handleOpenAddPostModal={handleOpenAddPostModal} handleCloseAddPostModal={handleCloseAddPostModal} setTitle={setTitle} title ={title} setUrl={setUrl} url ={url} setCaption={setCaption} caption ={caption} handleAddPost={handleAddPost} user = {user}/>
       <EditCommentModal user={user} editComment={editComment} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} getPostAndComments={getPostAndComments}/>
       <Routes> 
-        <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} getPostAndComments={getPostAndComments} setPosts={setPosts} posts={posts}/>}/>
         <Route path = '/signup' element={<SignupPage/>} />
-        <Route path = '/user/:id' element={<UserHomepage checkUser={checkUser} user = {user} getPostAndComments={getPostAndComments}/>} postModalData={postModalData} setPostModalData={setPostModalData} />       
+        <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments} getAllPosts={getAllPosts} setPosts={setPosts} posts={posts} />}/>
+        <Route path = '/user/:id' element={<UserHomepage checkUser={checkUser} user = {user}  getPostAndComments={getPostAndComments}/>} postModalData={postModalData} setPostModalData={setPostModalData} getAllPosts={getAllPosts} />       
         <Route path = '/user/settings/:id' element={<UserStuff user = {user}/>} />
       </Routes>
     </div>

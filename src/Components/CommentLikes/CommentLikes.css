@@ -1,0 +1,12 @@
+.commentLikes{
+    width: fit-content;
+    height:fit-content;
+}
+
+.commentLikeButtonContainer{
+    display: flex;
+    position: relative;
+    flex-flow: row nowrap;
+    font-size: .7rem;
+
+}

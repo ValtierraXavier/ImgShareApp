@@ -13,8 +13,8 @@
 #PostModalInnerContainer{
     display:flex;
     flex-flow: row nowrap;
-    height: 60vh;
-    width: 65vw;
+    height: 70%;
+    width: 65%;
     border: solid black 1px;
     background-color: rgba(255,255,255,1);
 }
@@ -35,6 +35,7 @@
     align-items: center;
     position: relative;
     height:15%;
+    width: 100%;
     margin:0;
     color:black;
 }
@@ -57,7 +58,8 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    height: 15%;
+    height: 25%;
+    margin-top: 10px;
 }
 .postModalCaption{
     display: flex;
@@ -67,6 +69,7 @@
     padding: 5px;
     overflow-y: auto;
     height: 100%;
+    font-size: 1.5rem;
 }
 
 .postModalLikeButton{
@@ -85,6 +88,11 @@
     height:100%;
     box-sizing: border-box;
     padding: 10px 0px 10px 0px;
+}
+
+.commentsContainerBanner{
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .commentsContainerMap{
@@ -108,9 +116,13 @@
 }
 .commentsTextArea{
     overflow-y: auto;
+    position: relative;
     box-sizing: border-box;
+    height:4.5rem;
+    font-size: 1rem;
     padding:2px;
     resize: none;
+    outline: none;
 }
 
 #closeButton{
@@ -118,15 +130,15 @@
     position: absolute;
     justify-content: center;
     align-items: center;
-    top: 22%;
-    right:19%;
+    top: 11%;
+    right:5%;
     border: solid black 1px;
     border-radius: 200px;
     height:2.5rem;
     padding: 5px;
-    /* background-color: white;
-    color: black; */
-    transition: .1s ease-in-out;
+    background-color: white;
+    color: black;
+    transition: .2s  background-color ease-in-out, color .2s ease-in-out;
 }
 
 #closeButton:hover{

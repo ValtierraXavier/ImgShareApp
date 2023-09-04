@@ -16,7 +16,7 @@
 #postCardMapContainer{
     display: flex;
     position: relative;
-    flex-flow: column nowrap;
+    flex-flow: column-reverse nowrap;
     justify-content: center;
     align-items: center;
     box-sizing: border-box; 
@@ -28,4 +28,13 @@
     position: absolute;
     left: 10px;
     top: -30px;
+}
+
+#likesButtonContainer{
+    display: flex;
+    position:relative;
+    bottom: 90%;
+    left:102%;
+    /* border: solid red; */
+    width: fit-content;
 }
