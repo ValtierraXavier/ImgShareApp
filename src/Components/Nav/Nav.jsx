@@ -2,24 +2,24 @@ import React from 'react'
 import './Nav.css'
 import { Link, NavLink } from 'react-router-dom'
 
-export default function Nav({openLoginModal, user, handleOpenAddPostModal, handleSignout}) {
+export default function Nav({getAllPosts, openLoginModal, user, handleOpenAddPostModal, handleSignout}) {
     const token = window.localStorage.getItem('Token')
+
 
   return (
     <div className = 'navContainer'>
         {user ? 
-        
             <div className = 'nav'>
                 <div className = 'navUserDetail'>
                     <NavLink to = {`/me/${user.id}`}>
                         <img height = "45rem" src={`${user.avatarImg}`}></img>
                     </NavLink>
-                    <a className='userName' to = {`/me/${user.id}`}>
+                    <a className='userName' href = {`/me/${user.id}`}>
                         <div >{user.username}</div>
                     </a>
                 </div>
                 <div className='homeAndPost'>
-                    <NavLink className='homeButton' to = '/'>Home</NavLink>
+                    <NavLink onClick={getAllPosts} className='homeButton' to = '/'>Home</NavLink>
                     <div className='postButton' onClick={handleOpenAddPostModal}>Make a Post!</div>
                 </div>    
                 <div  className = 'signInButtons'>

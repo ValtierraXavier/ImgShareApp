@@ -15,7 +15,9 @@ export const postPost = async(PostBody)=>{
 }
 
 export const updatePost = async(id, body)=>{
-    await postAPI.put(`/update/${id}`, body)
+    return(
+        await postAPI.put(`/put/${id}`, body)
+    )
 }
 
 export const deletePost = async(id)=>{

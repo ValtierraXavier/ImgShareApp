@@ -170,7 +170,7 @@ function App() {
     try{
       const postWComments = await postWithPopulatedComments(e.target.dataset.post_id)
       setPostModalData(prev=>prev=postWComments.data)
-      console.log(postModalData)
+      // console.log(postModalData)
       postModal.style.visibility = "visible"
     }catch(error){console.log(error.message)}
 
@@ -182,8 +182,8 @@ function App() {
 
   return (
     <div className="App" id='App'>
-      <Nav user = {user} handleOpenAddPostModal={handleOpenAddPostModal} openLoginModal={openLoginModal} handleSignout={handleSignout}/>
-      <LogInModal setModalOpen={setModalOpen} email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin} closeLoginModal={closeLoginModal}/>
+      <Nav user = {user} getAllPosts={getAllPosts} handleOpenAddPostModal={handleOpenAddPostModal} openLoginModal={openLoginModal} handleSignout={handleSignout}/>
+      <LogInModal setModalOpen={setModalOpen} email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin} closeLoginModal={closeLoginModal} getAllPosts={getAllPosts}/>
       <PostModal setEditComment={setEditComment} editComment={editComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} user={user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments} getAllPosts={getAllPosts}/>
       <AddPostModal handleOpenAddPostModal={handleOpenAddPostModal} handleCloseAddPostModal={handleCloseAddPostModal} setTitle={setTitle} title ={title} setUrl={setUrl} url ={url} setCaption={setCaption} caption ={caption} handleAddPost={handleAddPost} user = {user}/>
       <EditCommentModal user={user} editComment={editComment} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} getPostAndComments={getPostAndComments}/>

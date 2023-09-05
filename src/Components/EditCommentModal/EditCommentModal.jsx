@@ -53,7 +53,7 @@ export default function EditCommentModal({user, getPostAndComments, editComment,
                     <form className='editCommentModalForm'>
                         <label className='editCommentLabels' id='editCommentUserName'></label>
                         <label className='editCommentLabels' id ='editCommentTextInput'>{editSuccess}</label>
-                        <textarea type='text' className='editCommentInput' name='commentText' id='editCommentTextInput'  onChange={(e)=>setEditCommentText(prev => prev =e.target.value)} value ={editCommentText} ></textarea>
+                        <textarea type='text' className='editCommentInput' name='commentText' id='editCommentTextInput' onChange={(e)=>setEditCommentText(prev => prev =e.target.value)} value ={editCommentText} ></textarea>
                         <input onClick={handleEditComment} data-post_id ={editComment?editComment.whatPost:null} type='submit' className='editCommentInput' id='editCommentSubmitButton'></input>
                     </form>
                 </div>

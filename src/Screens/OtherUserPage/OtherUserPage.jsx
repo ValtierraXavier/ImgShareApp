@@ -19,7 +19,7 @@ export default function OtherUserPage({checkUser, user, getPostAndComments, post
     otherUserPosts(userId)
   },[])
 
-  console.log(usersPosts?usersPosts.posts:[])
+  // console.log(usersPosts?usersPosts.posts:[])
     
   return (
     <div className='otherUserPage'>
