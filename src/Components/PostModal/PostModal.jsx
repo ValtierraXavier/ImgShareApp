@@ -8,13 +8,15 @@ import PostLikes from '../PostLikes/PostLikes.jsx'
 
 export default function PostModal({ getAllPosts, getPostAndComments, setPostModalData, postModalData, user, openEditCommentModal, editComment, setEditComment, setEditCommentText, editCommentText, loadUserPosts, setLoadUserPosts}) {
     
+useState(()=>{
+},[])
 
+const[commentText, setCommentText] = useState("")
 
-    const[commentText, setCommentText] = useState("")
-
-    const closePostModal=()=>{
+const closePostModal=()=>{
+        // console.log(postModalData)
         const postModal = document.getElementById('postModal')
-        console.log(postModalData.likes)
+        // console.log(postModalData.likes)
         postModal.style.visibility = 'hidden'
         setCommentText(prev => prev = '')
         setPostModalData(prev => prev = {})
@@ -56,6 +58,7 @@ export default function PostModal({ getAllPosts, getPostAndComments, setPostModa
             <div className='imgAndDeets'>
                 <div id = 'postModalBanner'>
                     <h2 className='postModalTitle'>{postModalData.title? postModalData.title:"Title"}</h2>
+                    <h6 className = "postBy"> by {postModalData.poster?postModalData.poster.userName:'username'}</h6>
                 </div>
                 <div className='imgContainer'>
                     <img  src={postModalData.url? postModalData.url: 'https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg'} className='postModalImg'></img>

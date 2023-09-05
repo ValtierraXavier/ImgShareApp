@@ -21,12 +21,15 @@ const getUserPosts = async()=>{
 }
 
 useEffect(()=>{
+  console.log(userPosts)
   getUserPosts()
 },[arePosts, postModalData])
 
 return (
     <div className='userHomepage'>
-      <h1 id='userHomepageLabel' className='pageLabel'>Your Page</h1>
+      <div className='userLabelContainer'>
+        <h2 id='userHomepageLabel' className='pageLabel'>Your Page</h2>
+      </div>
       {arePosts?
         <div id='userPostsMapContainer'>
           {userPosts.map((post, index)=>{

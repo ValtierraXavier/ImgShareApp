@@ -1,0 +1,20 @@
+.otherUserPage{
+    display: flex;
+    position: relative;
+    top: 100px;
+    justify-content: center;
+    /* visibility:hidden; */
+}
+
+.otherUserTitle{
+    position: fixed;
+    left: 10px;
+    top: 80px;
+}
+
+.otherLikesContainer{
+    position: relative;
+    left: 402px;
+    top: 25px;
+
+}

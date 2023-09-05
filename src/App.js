@@ -12,22 +12,22 @@ import UserStuff from './Screens/userStuff/UserStuff.jsx';
 import PostModal from './Components/PostModal/PostModal.jsx';
 import AddPostModal from './Components/AddPostModal/AddPostModal.jsx';
 import EditCommentModal from './Components/EditCommentModal/EditCommentModal.jsx';
+import OtherUserPage from './Screens/OtherUserPage/OtherUserPage.jsx';
 import {getPosts, postWithPopulatedComments, postPost} from './Services/PostServices/PostServices.js';
 import { signIn, linkPostToUser } from './Services/UserServices/UserServices.js';
 
 function App() {
 
-  const[modalOpen, setModalOpen] = useState(false)
-  const[postModalData, setPostModalData] = useState({})
-  const[posts, setPosts] = useState([])
   const[user, setUser] = useState({})
-  const[isLoading, setIsLaoding] =useState(true)
+  const[posts, setPosts] = useState([])
   const[email, setEmail] = useState('')
   const[password, setPassword] = useState('')
   const[title, setTitle] = useState('')
   const[url, setUrl] = useState('')
   const[caption, setCaption] = useState('')
+  const[modalOpen, setModalOpen] = useState(false)
   const[loadAllPosts, setLoadAllPosts]= useState(true)
+  const[postModalData, setPostModalData] = useState({})
   const[editComment, setEditComment]=useState(null)
   const[editCommentText, setEditCommentText] = useState("")
   const navigate = useNavigate()
@@ -94,10 +94,10 @@ function App() {
     })
     checkUser()
     getAllPosts()
-    redirect('/')
+    redirectHome('/')
   }
   
-  const redirect =(path)=>{
+  const redirectHome =(path)=>{
    navigate(path)
   }
     
@@ -190,8 +190,9 @@ function App() {
       <Routes> 
         <Route path = '/signup' element={<SignupPage/>} />
         <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments} getAllPosts={getAllPosts} setPosts={setPosts} posts={posts} />}/>
-        <Route path = '/user/:id' element={<UserHomepage checkUser={checkUser} user = {user}  getPostAndComments={getPostAndComments}/>} postModalData={postModalData} setPostModalData={setPostModalData} getAllPosts={getAllPosts} />       
-        <Route path = '/user/settings/:id' element={<UserStuff user = {user}/>} />
+        <Route path = '/me/:id' element={<UserHomepage checkUser={checkUser} user = {user}  getPostAndComments={getPostAndComments}/>} postModalData={postModalData} setPostModalData={setPostModalData} getAllPosts={getAllPosts} />
+        <Route path = '/user/:id' element={<OtherUserPage checkUser={checkUser} user={user} getPostAndComments={getPostAndComments} postModalData={postModalData} setPostModalData={setPostModalData} getAllPosts={getAllPosts}/>}/>    
+        <Route path = '/me/settings/:id' element={<UserStuff user = {user}/>} />
       </Routes>
     </div>
   );

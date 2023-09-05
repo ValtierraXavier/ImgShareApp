@@ -32,12 +32,18 @@
 
 #postModalBanner{
     display: flex;
+    /* flex-flow: column nowrap; */
+    justify-content: flex-start;
     align-items: center;
     position: relative;
     height:15%;
     width: 100%;
     margin:0;
     color:black;
+}
+.postBy{
+    position: relative;
+    left: 10px;
 }
 
 .imgContainer{
@@ -90,7 +96,10 @@
     padding: 10px 0px 10px 0px;
 }
 
+
+
 .commentsContainerBanner{
+    margin: 0;
     box-sizing: border-box;
     padding: 10px;
 }

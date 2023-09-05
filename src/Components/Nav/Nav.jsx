@@ -11,12 +11,12 @@ export default function Nav({openLoginModal, user, handleOpenAddPostModal, handl
         
             <div className = 'nav'>
                 <div className = 'navUserDetail'>
-                    <NavLink to = {`/user/${user.id}`}>
+                    <NavLink to = {`/me/${user.id}`}>
                         <img height = "45rem" src={`${user.avatarImg}`}></img>
                     </NavLink>
-                    <NavLink className='userName' to = {`/user/${user.id}`}>
+                    <a className='userName' to = {`/me/${user.id}`}>
                         <div >{user.username}</div>
-                    </NavLink>
+                    </a>
                 </div>
                 <div className='homeAndPost'>
                     <NavLink className='homeButton' to = '/'>Home</NavLink>
