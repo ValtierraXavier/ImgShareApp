@@ -2,33 +2,31 @@ import React, {useState} from 'react'
 import './PostModal.css'
 import Comments from '../Comments/Comments.jsx'
 import { postComment } from '../../Services/CommentServices/CommentServices.js'
-import {updateUser} from '../../Services/UserServices/UserServices.js'
+import {updateUser, getAllUserPosts} from '../../Services/UserServices/UserServices.js'
 import {linkCommentToPost, updatePost} from '../../Services/PostServices/PostServices.js'
 import PostLikes from '../PostLikes/PostLikes.jsx'
 
-export default function PostModal({ getAllPosts, getPostAndComments, setPostModalData, postModalData, user, openEditCommentModal, editComment, setEditComment, setEditCommentText, editCommentText, loadUserPosts, setLoadUserPosts}) {
+export default function PostModal({usersPost, setUsersPost, setUsersPosts, getAllPosts, getPostAndComments, setPostModalData, postModalData, user, editComment, setEditComment, setEditCommentText, editCommentText, loadUserPosts, setLoadUserPosts}) {
 
 const[commentText, setCommentText] = useState("")
 const[editPost, setEditPost]= useState(false)
 const[editTitle, setEditTitle]= useState('')
 const[editCaption, setEditCaption]=useState('')
 
-// console.log(editCaption, editTitle)
 
 const closePostModal=async()=>{
-        // console.log(postModalData)
         const postModal = document.getElementById('postModal')
-        // console.log(postModalData.likes)
         postModal.style.visibility = 'hidden'
         setCommentText(prev => prev = '')
         setPostModalData(prev => prev = {})
         setEditPost(prev => prev = false)
+        setUsersPost(prev => prev = false)
         await getAllPosts()
     }
 
     
     const handleMakeComment=async(e)=>{
-        e.preventDefault(false)
+        e.preventDefault()
         
         const commentBox = document.getElementById('commentsContainerMap')
         const CommentBoxHeight= commentBox.scrollHeight
@@ -55,12 +53,12 @@ const closePostModal=async()=>{
         
     }
 
-    const startPostEdit =()=>{
+    const startPostEdit = ()=>{
         if(editPost ===false){            
             setEditPost(prev => prev = true)
             setEditTitle(prev => prev = postModalData.title)
             setEditCaption(prev => prev = postModalData.caption)
-        }else if(editPost===true){
+        }else{
             setEditPost(prev => prev = false)
             setEditTitle(prev => prev = '')
             setEditCaption(prev => prev = '')
@@ -70,23 +68,19 @@ const closePostModal=async()=>{
     const handleEditPost =async(e)=>{
         e.preventDefault()
         const postId = e.target.dataset.post_id
-        // console.log(editCaption, editTitle)
         const newPost={
             title: editTitle,
             caption: editCaption,
         }
         try{
             const returnedPost = await updatePost(postId, {newPost})
-            // console.log(returnedPost)
             if(returnedPost.status ===200){
-                console.log(returnedPost.data)
-                await getPostAndComments(e)
-                await 
-                startPostEdit()
-
+                const userSearch = await getAllUserPosts(returnedPost.data.poster)
+                setUsersPosts(prev => prev = userSearch.data)
+                await getPostAndComments(e)  
             }else{window.alert('Uh oh couldnt update Post')}
+            startPostEdit()
         }catch(error){console.log(error.message)}
-
     }
         
 
@@ -110,8 +104,7 @@ const closePostModal=async()=>{
                         <div data-post_id ={postModalData?postModalData._id:{}} onClick ={handleEditPost}>Edit Post!</div>
                     </form>
                     <div >
-                        <PostLikes postlikes = {postModalData.likes?postModalData.likes:[]} user={user}  post_id = {postModalData._id} getAllPosts={getPostAndComments}/>
-                       
+                        <PostLikes postlikes = {postModalData.likes?postModalData.likes:[]} user={user}  post_id = {postModalData._id} getAllPosts={getPostAndComments}/>  
                     </div>
                 </div>
             </div>
@@ -161,7 +154,12 @@ const closePostModal=async()=>{
                     <div className='postModalCaption'>{postModalData.caption? postModalData.caption:'caption asfoiasfoksnfasoifnsof afi asfoasi fsaoif safoias fosaif safbasof safas fosajf saofj safoasf oasfu saoajs ofas fsa faosf saofj asof asfosa fsa foasf aof saofis foasf saof saofsa fosa fosa fsaof saof sfoasfjosaof saf safojf asojsa fosaj fsaojf saof saojf safojsa foasf asof fojas foasjf o'}</div>
                     <div >
                         <PostLikes postlikes = {postModalData.likes?postModalData.likes:[]} user={user}  post_id = {postModalData._id} getAllPosts={getPostAndComments}/>
-                        <div onClick={startPostEdit}>edit</div>
+                        {usersPost === false?
+                            <div ></div>
+                            :
+                            <div onClick={startPostEdit}>edit</div>
+
+                        }
                     </div>
                 </div>
             </div>

@@ -6,8 +6,8 @@ import { getAllUserPosts } from '../../Services/UserServices/UserServices'
 import { useParams } from 'react-router-dom'
 import { userPosts } from '../../Services/PostServices/PostServices'
 
-export default function OtherUserPage({checkUser, user, getPostAndComments, postModalData, setPostModalData, getAllPosts}) {
-  const[usersPosts, setUsersPosts]= useState(null)
+export default function OtherUserPage({usersPosts, setUsersPosts, checkUser, user, getPostAndComments, postModalData, setPostModalData, getAllPosts}) {
+  // const[usersPosts, setUsersPosts]= useState(null)
   const userId = useParams()
 
   const otherUserPosts =async()=>{
@@ -19,7 +19,6 @@ export default function OtherUserPage({checkUser, user, getPostAndComments, post
     otherUserPosts(userId)
   },[])
 
-  // console.log(usersPosts?usersPosts.posts:[])
     
   return (
     <div className='otherUserPage'>

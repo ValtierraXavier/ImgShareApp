@@ -19,7 +19,7 @@ import { signIn, linkPostToUser } from './Services/UserServices/UserServices.js'
 function App() {
 
   const[user, setUser] = useState({})
-  const[posts, setPosts] = useState([])
+  const[posts, setPosts] = useState(null)
   const[email, setEmail] = useState('')
   const[password, setPassword] = useState('')
   const[title, setTitle] = useState('')
@@ -30,6 +30,8 @@ function App() {
   const[postModalData, setPostModalData] = useState({})
   const[editComment, setEditComment]=useState(null)
   const[editCommentText, setEditCommentText] = useState("")
+  const[usersPosts, setUsersPosts]= useState(null)
+  const[usersPost, setUsersPost]= useState(false)
   const navigate = useNavigate()
 
         
@@ -170,6 +172,13 @@ function App() {
     try{
       const postWComments = await postWithPopulatedComments(e.target.dataset.post_id)
       setPostModalData(prev=>prev=postWComments.data)
+      if(user.id === postWComments.data.poster._id){
+        console.log(user.id, '|true|', postWComments.data.poster)
+        setUsersPost(prev => prev = true)
+      }else{
+        console.log(user.id, '|false|', postWComments.data.poster)
+        setUsersPost(prev => prev = false)
+      }
       // console.log(postModalData)
       postModal.style.visibility = "visible"
     }catch(error){console.log(error.message)}
@@ -184,14 +193,14 @@ function App() {
     <div className="App" id='App'>
       <Nav user = {user} getAllPosts={getAllPosts} handleOpenAddPostModal={handleOpenAddPostModal} openLoginModal={openLoginModal} handleSignout={handleSignout}/>
       <LogInModal setModalOpen={setModalOpen} email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin} closeLoginModal={closeLoginModal} getAllPosts={getAllPosts}/>
-      <PostModal setEditComment={setEditComment} editComment={editComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} user={user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments} getAllPosts={getAllPosts}/>
+      <PostModal setEditComment={setEditComment} editComment={editComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} user={user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments} getAllPosts={getAllPosts} usersPosts={usersPosts} setUsersPosts={setUsersPosts} setUsersPost={setUsersPost} usersPost={usersPost}/>
       <AddPostModal handleOpenAddPostModal={handleOpenAddPostModal} handleCloseAddPostModal={handleCloseAddPostModal} setTitle={setTitle} title ={title} setUrl={setUrl} url ={url} setCaption={setCaption} caption ={caption} handleAddPost={handleAddPost} user = {user}/>
       <EditCommentModal user={user} editComment={editComment} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} getPostAndComments={getPostAndComments}/>
       <Routes> 
         <Route path = '/signup' element={<SignupPage/>} />
         <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments} getAllPosts={getAllPosts} setPosts={setPosts} posts={posts} />}/>
         <Route path = '/me/:id' element={<UserHomepage checkUser={checkUser} user = {user}  getPostAndComments={getPostAndComments}/>} postModalData={postModalData} setPostModalData={setPostModalData} getAllPosts={getAllPosts} />
-        <Route path = '/user/:id' element={<OtherUserPage checkUser={checkUser} user={user} getPostAndComments={getPostAndComments} postModalData={postModalData} setPostModalData={setPostModalData} getAllPosts={getAllPosts}/>}/>    
+        <Route path = '/user/:id' element={<OtherUserPage checkUser={checkUser} user={user} getPostAndComments={getPostAndComments} postModalData={postModalData} setPostModalData={setPostModalData} getAllPosts={getAllPosts} usersPosts={usersPosts} setUsersPosts={setUsersPosts}/>}/>    
         <Route path = '/me/settings/:id' element={<UserStuff user = {user}/>} />
       </Routes>
     </div>

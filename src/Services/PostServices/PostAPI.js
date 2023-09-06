@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3020/posts'
+const baseUrl = 'https://imgsharebe-production.up.railway.app/posts/'
 
 const postAPI = axios.create({
     baseURL: baseUrl,
