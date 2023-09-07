@@ -8,12 +8,10 @@ import Liked from '../../Assets/Liked.png'
 export default function CommentLikes({getPostAndComments, postId, comment, user, editComment, setEditComment, editCommentText, setEditCommentText, loadUserPosts, setLoadUserPosts}){
   const[liked, setliked]=useState(false)
   const commentLikes = comment.likes
-  // console.log(commentLikes)
 
   const checkLikes=()=>{
     const likeIndex = comment?comment.likes.indexOf(user?user.id:''):[]
     if(likeIndex > -1){
-      console.log(likeIndex)
       setliked(prev =>prev= true)
     }else if(likeIndex===-1){
       setliked(prev=>prev=false)
@@ -23,14 +21,10 @@ export default function CommentLikes({getPostAndComments, postId, comment, user,
   const likeComment = async (e) =>{
     const commentId = comment._id
     const userId = user?user.id:""
-    // console.log(commentId, userId)
     try{
-      if(user?user.id:'' !== "")
-      {const commentLike = await addLikeToComment(commentId, {userId})
-      const userComments = await addCommentLike(userId, {commentId})
-      // await addLikeToComment(commentId, {userId})
-      // await addCommentLike(userId, {commentId})
-      console.log(commentLike, userComments)
+      if(user?user.id:'' !== ""){
+      await addLikeToComment(commentId, {userId})
+      await addCommentLike(userId, {commentId})
       await getPostAndComments(e)
     }else{
       window.alert('Please Login')

@@ -13,15 +13,13 @@ export default function PostLikes({postlikes, post_id, user, getAllPosts, postMo
     const like = async(e)=>{
         if(user){            
             const userId = user.id
-            const post = await addLikeToPost(post_id, {userId})
-            const currentUser = await addPostLike(userId, {post_id})
+            await addLikeToPost(post_id, {userId})
+            await addPostLike(userId, {post_id})
             await getAllPosts(e)
         }else{
             window.alert("please log in to like")
             return
         }
-
-        // console.log(post, currentUser)
     }
 
     const checkLiked=()=>{
@@ -37,14 +35,14 @@ export default function PostLikes({postlikes, post_id, user, getAllPosts, postMo
 
   return (
     <div>        
-        {liked==false?
+        {liked===false?
             <div onClick={like} className='postLikes'  data-post_id={post_id} id='likeButton'>
-                <img  height='30px' data-post_id={post_id} src={notLiked}></img>
+                <img  height='30px' data-post_id={post_id} src={notLiked} alt =' not liked'></img>
                 <div className='postLikesCounter'>{postlikes.length}</div>
             </div>
         :           
             <div onClick={like} className='postLikes'  data-post_id={post_id} id='postLikedButton'>
-                <img height='30px' data-post_id={post_id} src={Liked}></img>
+                <img height='30px' data-post_id={post_id} src={Liked} alt='liked'></img>
                 <div className='postLikesCounter'>{postlikes.length}</div>
             </div>
         }

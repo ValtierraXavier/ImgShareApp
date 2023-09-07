@@ -96,7 +96,7 @@ const closePostModal=async()=>{
                     <h6 className = "postBy"> by <a href={`/user/${postModalData.poster?postModalData.poster._id:'noID'}`}>{postModalData.poster?postModalData.poster.userName:'username'}</a></h6>
                 </div>
                 <div className='imgContainer'>
-                    <img  src={postModalData.url? postModalData.url: 'https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg'} className='postModalImg'></img>
+                    <img  src={postModalData.url? postModalData.url: 'https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg'} alt = 'post in modal' className='postModalImg'></img>
                 </div>
                 <div className='captionAndLikesContainer'>
                     <form>
@@ -148,7 +148,7 @@ const closePostModal=async()=>{
                     <h6 className = "postBy"> by <a href={`/user/${postModalData.poster?postModalData.poster._id:'noID'}`}>{postModalData.poster?postModalData.poster.userName:'username'}</a></h6>
                 </div>
                 <div className='imgContainer'>
-                    <img  src={postModalData.url? postModalData.url: 'https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg'} className='postModalImg'></img>
+                    <img  src={postModalData.url? postModalData.url: 'https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg'} alt = 'modal placeholder' className='postModalImg'></img>
                 </div>
                 <div className='captionAndLikesContainer'>
                     <div className='postModalCaption'>{postModalData.caption? postModalData.caption:'caption asfoiasfoksnfasoifnsof afi asfoasi fsaoif safoias fosaif safbasof safas fosajf saofj safoasf oasfu saoajs ofas fsa faosf saofj asof asfosa fsa foasf aof saofis foasf saof saofsa fosa fosa fsaof saof sfoasfjosaof saf safojf asojsa fosaj fsaojf saof saojf safojsa foasf asof fojas foasjf o'}</div>

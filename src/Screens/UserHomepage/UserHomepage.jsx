@@ -16,12 +16,11 @@ const getUserPosts = async()=>{
     setUserPosts(prev => prev= theUserPosts.data.posts)
   }catch(error){
     setArePosts(prev => prev = false)
-    console.log(error)}
+    console.log(error.message, 'from userHomepage.jsx')}
   
 }
 
 useEffect(()=>{
-  console.log(userPosts)
   getUserPosts()
 },[arePosts, postModalData])
 

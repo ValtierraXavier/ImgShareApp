@@ -3,8 +3,6 @@ import './Nav.css'
 import { Link, NavLink } from 'react-router-dom'
 
 export default function Nav({getAllPosts, openLoginModal, user, handleOpenAddPostModal, handleSignout}) {
-    const token = window.localStorage.getItem('Token')
-
 
   return (
     <div className = 'navContainer'>
@@ -12,7 +10,7 @@ export default function Nav({getAllPosts, openLoginModal, user, handleOpenAddPos
             <div className = 'nav'>
                 <div className = 'navUserDetail'>
                     <NavLink to = {`/me/${user.id}`}>
-                        <img height = "45rem" src={`${user.avatarImg}`}></img>
+                        <img height = "45rem" src={`${user.avatarImg}`} alt = 'user profile'></img>
                     </NavLink>
                     <a className='userName' href = {`/me/${user.id}`}>
                         <div >{user.username}</div>
@@ -29,7 +27,7 @@ export default function Nav({getAllPosts, openLoginModal, user, handleOpenAddPos
             :
             <div className = 'nav'>
                 <div className = 'navUserDetail'>
-                    <img height = "45rem" src='https://www.pngitem.com/pimgs/m/137-1370051_avatar-generic-avatar-hd-png-download.png'></img>
+                    <img height = "45rem" src='https://www.pngitem.com/pimgs/m/137-1370051_avatar-generic-avatar-hd-png-download.png' alt ='Guest Profile'></img>
                     <div>Browsing as a Guest</div>
                 </div>
                 <div className='homeAndPost'>

@@ -21,9 +21,6 @@ export default function SignupPage() {
             const userToken = await signUp(newUser)
             window.localStorage.setItem('Token', `Bearer ${userToken.data.token}`)
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + userToken.data.token;
-            console.log(userToken.data)
-        //    document.cookie = `token = ${data.data.token}`
-        //    console.log(document.cookie)
         }catch(error){console.log(error)}   
     }
 

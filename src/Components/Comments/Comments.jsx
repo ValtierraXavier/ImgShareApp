@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import './Comments.css'
 import {deleteComment} from '../../Services/CommentServices/CommentServices.js'
 import { unlinkCommentFromPost } from '../../Services/PostServices/PostServices.js'
@@ -24,7 +24,6 @@ export default function Comments({ comment , postId, user, getPostAndComments, s
     setEditComment(prev => prev = comment)
     setEditCommentText(prev => prev = comment.commentText)
     editCommentModal.style.visibility = 'visible'
-    console.log(comment)
   }
 
   

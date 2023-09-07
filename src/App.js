@@ -65,7 +65,6 @@ function App() {
   
     try{
         const userToken = await signIn(credentials)
-        console.log(userToken)
         if(userToken.status === 201){
           window.localStorage.setItem('Token', `Bearer ${userToken.data.token}`)
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + userToken.data.token;
@@ -106,12 +105,10 @@ function App() {
   const checkUser=()=>{
     const token = window.localStorage.getItem('Token')
     if(token){
-      console.log('youre logged in')
       const decoded = jwtDecode(token)
       setUser(prev => prev = decoded)
-      console.log("decoded JWT", user)
+      // console.log("decoded JWT", user)
     }else if(!token){
-      console.log('you are not logged in')
       setUser(prev => prev = null )
     }
   }
@@ -173,13 +170,10 @@ function App() {
       const postWComments = await postWithPopulatedComments(e.target.dataset.post_id)
       setPostModalData(prev=>prev=postWComments.data)
       if(user.id === postWComments.data.poster._id){
-        console.log(user.id, '|true|', postWComments.data.poster)
         setUsersPost(prev => prev = true)
       }else{
-        console.log(user.id, '|false|', postWComments.data.poster)
         setUsersPost(prev => prev = false)
       }
-      // console.log(postModalData)
       postModal.style.visibility = "visible"
     }catch(error){console.log(error.message)}
 
