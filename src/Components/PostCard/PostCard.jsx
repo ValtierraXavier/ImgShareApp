@@ -1,16 +1,7 @@
 import React from 'react'
 import './PostCard.css'
-// import PostLikes from '../PostLikes/PostLikes.jsx'
-// import { getUser } from '../../Services/UserServices/UserServices.js'
 
 export default function PostCard({post, userPosts}) {
-  // const[userSearch, setUserSearch]=useState({})
-
-  // const userLookup = async(e)=>{
-  //   const userLookup = await getUser(post.poster)
-  //   setUserSearch(prev => prev = userLookup.data)
-  // }
-
   return (
     <div className = 'postCardContainer' >
       <div id = 'postCard'>

@@ -11,7 +11,7 @@ export default function Landing({user, posts ,setPosts, postModalData, setPostMo
         <div id ='postCardMapContainer'>{
         posts.map((post, index)=>{
           return(
-            <div key={`lMC${index}`}>
+            <div className='fullCardContainer' key={`lMC${index}`}>
               <div key={`PCC${index}`} onClick={getPostAndComments} data-_id = {post._id}>
                 <PostCard key={`PU${index}`} post={post}/>
               </div>
