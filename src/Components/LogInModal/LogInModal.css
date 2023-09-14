@@ -19,7 +19,7 @@
     align-items: center;
     width: 50%;
     height: 50%;
-    margin: 0 25%;
+    /* margin: 0 25%; */
     background-color: rgba(100,100,100,.8);
     border-radius: 5px;
 }
@@ -99,4 +99,16 @@
     color: white;
     background-color: black;
     border: solid white 1px
+}
+
+@media(min-width: 300px)and (max-width:500px){
+    .loginFormContainerAndTitle{
+        width: 98vw;
+        height: 45vh;
+        margin: 0;
+    }
+
+    #loginModalCloseButton{
+        height: 10px;
+    }
 }

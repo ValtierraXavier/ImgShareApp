@@ -89,3 +89,14 @@
     color: white;
     background-color: black;
 }
+
+@media(min-width: 300px)and (max-width:500px){
+    .editCommentModalBackground{
+        width: 98%;
+        height: 85%;
+    }
+
+    .editCommentCloseButton{
+        height: 10px;
+    }
+}

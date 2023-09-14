@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './OtherUserPage.css'
 import PostCard from '../../Components/PostCard/PostCard.jsx'
 import PostLikes from '../../Components/PostLikes/PostLikes.jsx'
 import { getAllUserPosts } from '../../Services/UserServices/UserServices'
 import { useParams } from 'react-router-dom'
-import { userPosts } from '../../Services/PostServices/PostServices'
 
 export default function OtherUserPage({usersPosts, setUsersPosts, checkUser, user, getPostAndComments, postModalData, setPostModalData, getAllPosts}) {
-  // const[usersPosts, setUsersPosts]= useState(null)
   const userId = useParams()
 
   const otherUserPosts =async()=>{
@@ -26,8 +24,8 @@ export default function OtherUserPage({usersPosts, setUsersPosts, checkUser, use
       <div className='otherMapDiv'>
         {usersPosts?usersPosts.posts.map((post, index)=>{
           return(
-            <div>
-              <div className='otherLikesContainer' >
+            <div key={index}>
+              <div className='otherLikesContainer'key={`oLC${index}`} >
                 <PostLikes key ={`lB${index}`}  postlikes = {post.likes} user={user} post_id = {post._id} getAllPosts={otherUserPosts} postModalData={postModalData} />
               </div>
               <div className='postCardContainer' onClick={getPostAndComments} data-_id = {post._id}>

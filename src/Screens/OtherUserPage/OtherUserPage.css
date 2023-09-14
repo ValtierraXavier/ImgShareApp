@@ -3,17 +3,24 @@
     position: relative;
     top: 80px;
     justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 .otherUserTitle{
     position: fixed;
     left: 10px;
     top: 50px;
+
 }
 
 .otherLikesContainer{
     position: relative;
     left: 40.5vw;
     top: 3vh;
+    width: fit-content;
+    height: fit-content;
 
 }

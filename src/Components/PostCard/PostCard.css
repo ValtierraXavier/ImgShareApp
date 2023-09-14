@@ -80,7 +80,7 @@
     padding:5px;
 }
 
-/* @media(min-width: 300px)and (max-width:500px){
+@media(min-width: 300px)and (max-width:500px){
     .postCardContainer{
         width: 75vw;
 
@@ -91,4 +91,4 @@
         margin: 0 ;
         padding: 0;
     }
-} */
+}

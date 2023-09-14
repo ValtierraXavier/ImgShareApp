@@ -82,3 +82,10 @@
     border: none;
     border-radius: 5px;
 }
+
+@media(min-width: 300px)and (max-width:500px){
+    .modalBackground{
+        width: 98%;
+        height: 75%;
+    }
+}
