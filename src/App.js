@@ -62,7 +62,6 @@ function App() {
         email: email,
         password: password
     }
-  console.log(credentials)
     try{
         const userToken = await signIn({credentials})
         console.log(userToken)
@@ -138,13 +137,14 @@ function App() {
     try{
       const sendPost = await postPost(newPost)
       const newPostId = sendPost.data._id
+      console.log(sendPost.data)
       await linkPostToUser(sendPost.data.poster ,{newPostId})
       addPostModal.style.visibility='hidden'
       setTitle(prev => prev = "")
       setUrl(prev => prev = "")
       setCaption(prev => prev = "")
       setLoadAllPosts(prev=>prev = true)
-    }catch(error){console.log(error.message)}
+    }catch(error){console.log(error)}
   }
 
   const handleCloseAddPostModal =()=>{
@@ -169,9 +169,7 @@ function App() {
   }
 
   const getPostAndComments = async(e)=>{
-    // console.log(e.target)
     const postModal = document.getElementById('postModal')
-    // console.log(e.target.dataset)
     try{
       const postWComments = await postWithPopulatedComments(e.target.dataset.post_id)
       setPostModalData(prev=>prev=postWComments.data)
