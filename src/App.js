@@ -137,13 +137,13 @@ function App() {
     try{
       const sendPost = await postPost(newPost)
       const newPostId = sendPost.data._id
-      console.log(sendPost.data)
       await linkPostToUser(sendPost.data.poster ,{newPostId})
       addPostModal.style.visibility='hidden'
       setTitle(prev => prev = "")
       setUrl(prev => prev = "")
       setCaption(prev => prev = "")
       setLoadAllPosts(prev=>prev = true)
+      getAllPosts()
     }catch(error){console.log(error)}
   }
 
