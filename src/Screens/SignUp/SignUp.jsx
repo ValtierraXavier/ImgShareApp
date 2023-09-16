@@ -3,7 +3,7 @@ import axios from 'axios'
 import { signUp } from '../../Services/UserServices/UserServices.js'
 import './SignUp.css'
 
-export default function SignupPage() {
+export default function SignupPage({redirectHome}) {
     const[email, setEmail] = useState('')
     const[userName, setUserName] = useState('')
     const[password,setPassword] = useState('')
@@ -18,9 +18,14 @@ export default function SignupPage() {
             password: password
         }
         try{
+            console.log(newUser)
             const userToken = await signUp(newUser)
-            window.localStorage.setItem('Token', `Bearer ${userToken.data.token}`)
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + userToken.data.token;
+            if(userToken.status === 201){
+                console.log(userToken)
+                window.localStorage.setItem('Token', `Bearer ${userToken.data.token}`)
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + userToken.data.token;
+                redirectHome('/')
+            }
         }catch(error){console.log(error)}   
     }
 

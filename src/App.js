@@ -62,9 +62,10 @@ function App() {
         email: email,
         password: password
     }
-  
+  console.log(credentials)
     try{
-        const userToken = await signIn(credentials)
+        const userToken = await signIn({credentials})
+        console.log(userToken)
         if(userToken.status === 201){
           window.localStorage.setItem('Token', `Bearer ${userToken.data.token}`)
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + userToken.data.token;
@@ -73,6 +74,8 @@ function App() {
           passwordLabel.style.color = 'green'
           loginSubmitButton.style.backgroundColor = 'green'
           setTimeout(()=>{closeLoginModal()},1000)
+          }else if(userToken.response.status === 500){
+            window.alert('User not found. Signup for an acocunt.')
           }
           getAllPosts()
     }catch(error){console.log(error)}
@@ -107,7 +110,6 @@ function App() {
     if(token){
       const decoded = jwtDecode(token)
       setUser(prev => prev = decoded)
-      // console.log("decoded JWT", user)
     }else if(!token){
       setUser(prev => prev = null )
     }
@@ -156,7 +158,11 @@ function App() {
   const getAllPosts = async () => {
     try{
       const allPosts = await getPosts()
-      setPosts(prev => prev = allPosts.data)
+      if(allPosts.data.length ===0){
+        return
+      }else{
+        setPosts(prev => prev = allPosts.data)
+      }
       checkUser()
       setLoadAllPosts(prev => prev = false)
     }catch(error){console.log(error)}
@@ -191,7 +197,7 @@ function App() {
       <AddPostModal handleOpenAddPostModal={handleOpenAddPostModal} handleCloseAddPostModal={handleCloseAddPostModal} setTitle={setTitle} title ={title} setUrl={setUrl} url ={url} setCaption={setCaption} caption ={caption} handleAddPost={handleAddPost} user = {user}/>
       <EditCommentModal user={user} editComment={editComment} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} getPostAndComments={getPostAndComments}/>
       <Routes> 
-        <Route path = '/signup' element={<SignupPage/>} />
+        <Route path = '/signup' element={<SignupPage redirectHome={redirectHome}/>} />
         <Route path = '/' element={<Landing user = {user} setPostModalData={setPostModalData} postModalData={postModalData} getPostAndComments={getPostAndComments} getAllPosts={getAllPosts} setPosts={setPosts} posts={posts} />}/>
         <Route path = '/me/:id' element={<UserHomepage checkUser={checkUser} user = {user}  getPostAndComments={getPostAndComments}/>} postModalData={postModalData} setPostModalData={setPostModalData} getAllPosts={getAllPosts} />
         <Route path = '/user/:id' element={<OtherUserPage checkUser={checkUser} user={user} getPostAndComments={getPostAndComments} postModalData={postModalData} setPostModalData={setPostModalData} getAllPosts={getAllPosts} usersPosts={usersPosts} setUsersPosts={setUsersPosts}/>}/>    

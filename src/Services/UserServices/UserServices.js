@@ -3,7 +3,7 @@ import usersAPI from './UserAPI.js'
 export const signUp = async (newUser)=>{
     try{
         return(
-                await usersAPI.post('/signup', newUser)
+            await usersAPI.post('/signup', newUser)
         )
         
     }catch(error){console.log(error)}
@@ -14,7 +14,11 @@ export const signIn = async (currentUser)=>{
         return(
             await usersAPI.post('/signin', currentUser)
         )
-    }catch(error){console.log(error)}
+    }catch(error){
+        return(
+            error
+        )
+    }
 }
 
 export const getUser = async (id) =>{

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = 'https://imgsharebe-production.up.railway.app/user/'
+// const baseUrl = 'https://imgsharebe-production.up.railway.app/user/'
+const baseUrl = 'http://localhost:3020/user/'
 
 const usersAPI = axios.create({
     baseURL: baseUrl,

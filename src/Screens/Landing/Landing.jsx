@@ -4,6 +4,7 @@ import PostLikes from '../../Components/PostLikes/PostLikes.jsx'
 import './Landing.css'
 
 export default function Landing({user, posts ,setPosts, postModalData, setPostModalData, getPostAndComments, getAllPosts}) {
+  console.log(posts)
   return (
     <div className ='landingContainer'>
       <h1 id='homeLabel' className='pageLabel'>Home</h1>
@@ -22,8 +23,9 @@ export default function Landing({user, posts ,setPosts, postModalData, setPostMo
           )
         })
         }</div>
-        :<div id ='homepageLoading'>
-            <h1 id ='loading' >Loading...</h1>
+        :
+        <div id ='homepageLoading'>
+          <h1 id ='loading' >Loading...</h1>
         </div>
       }    
     </div>
