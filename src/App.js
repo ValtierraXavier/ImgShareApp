@@ -95,13 +95,13 @@ function App() {
       username: "",
       email: ""
     })
-    checkUser()
-    getAllPosts()
     redirectHome('/')
   }
   
   const redirectHome =(path)=>{
    navigate(path)
+   checkUser()
+   getAllPosts()
   }
     
   const checkUser=()=>{
