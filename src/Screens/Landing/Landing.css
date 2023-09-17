@@ -1,59 +1,27 @@
 .landingContainer{
     display: flex;
-    position: relative;
-    top: 100px;
-    justify-content: center;
-}
-#homepageLoading{
-    display: flex;
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    justify-content: center;
+    flex-flow: column nowrap;
     align-items: center;
-
-}
-
-#postCardMapContainer{
-    display: flex;
     position: relative;
-    flex-flow: column-reverse nowrap;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box; 
-    top: 5px;
+    top:110px;
 }
 
-#homeLabel{
+.fullCardContainer{
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    justify-content: center;
+    width: 40vw;
+}
+
+.pageLabel{
     position: fixed;
-    left: 10px;
     top: 40px;
+    left: 5px;
 }
 
-#likesButtonContainer{
-    display: flex;
-    position:relative;
-    left:102%;
-    bottom: 42vh;
-    /* border: solid red; */
-    width: fit-content;
-}
 
-/* @media(min-width: 300px)and (max-width:500px){
-    .landingContainer{
-        justify-content: flex-start;
-    }
-    #postCardMapContainer{
-        border: solid green;
-        position: absolute;
-        width: 100vw;
-    }
-
-    #likesButtonContainer{
-        bottom: 42vh;
-    }
+@media(min-width: 300px)and (max-width:800px){
     .fullCardContainer{
-        position: relative;
-        width: 100%;
+        width: 98%;
     }
-} */
+}

@@ -101,7 +101,7 @@
     border: solid white 1px
 }
 
-@media(min-width: 300px)and (max-width:500px){
+@media(min-width: 300px)and (max-width:800px){
     .loginFormContainerAndTitle{
         width: 98vw;
         height: 45vh;

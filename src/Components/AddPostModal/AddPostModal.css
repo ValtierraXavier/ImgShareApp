@@ -83,7 +83,7 @@
     border-radius: 5px;
 }
 
-@media(min-width: 300px)and (max-width:500px){
+@media(min-width: 300px)and (max-width:800px){
     .modalBackground{
         width: 98%;
         height: 75%;

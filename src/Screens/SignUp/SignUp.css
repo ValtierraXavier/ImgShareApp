@@ -3,8 +3,6 @@
     border: solid black 1px;
     height: 100vh;
     width: 100vw;
-    /* justify-content: center;
-    align-items: center; */
 }
 
 .signupIsland{
@@ -12,12 +10,13 @@
     flex-flow: column nowrap;
     position: relative;
     width: 50%;
-    height: 60%;
-    margin: 15% 25%;    
+    height: fit-content;
+    margin: 0% 25%;    
     box-sizing: border-box;
     background-color: rgba(150,150,150,.9);
     border-radius: 15px;  
-    padding: 5px;
+    padding: 10px;
+    top: 16%;
 }
 
 .signupForm{
@@ -58,4 +57,13 @@
     width: 90%;
     margin-top: 10px;
     box-sizing: border-box;
+}
+
+@media(min-width: 200px) and (max-width: 800px){
+
+    .signupIsland{
+        margin: 0% 1%;
+        width: 98%;
+    }
+
 }

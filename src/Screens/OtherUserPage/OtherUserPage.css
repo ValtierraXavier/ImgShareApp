@@ -1,26 +1,26 @@
 .otherUserPage{
-    display: flex;
-    position: relative;
-    top: 80px;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+    display: flex; 
+    flex-flow: column nowrap;
+    align-items: center;
+    position:relative;
+    top: 110px;
 }
 
 .otherUserTitle{
     position: fixed;
-    left: 10px;
-    top: 50px;
+    top: 40px;
+    left: 5px;
+}
+
+.otherFullContainer{
+    display: flex;
+    flex-flow:row-reverse nowrap;
+    position: relative;
 
 }
 
-.otherLikesContainer{
-    position: relative;
-    left: 40.5vw;
-    top: 3vh;
-    width: fit-content;
-    height: fit-content;
-
+@media(min-width: 300px) and (max-width: 800px){
+    .otherFullContainer{
+        width: 98vw;
+    }
 }

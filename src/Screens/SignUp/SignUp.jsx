@@ -21,7 +21,6 @@ export default function SignupPage({redirectHome}) {
             console.log(newUser)
             const userToken = await signUp(newUser)
             if(userToken.status === 201){
-                console.log(userToken)
                 window.localStorage.setItem('Token', `Bearer ${userToken.data.token}`)
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + userToken.data.token;
                 redirectHome('/')

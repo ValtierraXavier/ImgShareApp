@@ -64,7 +64,6 @@ function App() {
     }
     try{
         const userToken = await signIn({credentials})
-        console.log(userToken)
         if(userToken.status === 201){
           window.localStorage.setItem('Token', `Bearer ${userToken.data.token}`)
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + userToken.data.token;
