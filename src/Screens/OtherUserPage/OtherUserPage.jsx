@@ -25,7 +25,7 @@ export default function OtherUserPage({usersPosts, setUsersPosts, checkUser, use
           return(
             <div key={index}>
               <div className='otherFullContainer'>
-                <div className='otherLikesContainer'key={`oLC${index}`} >
+                <div className='otherLikesContainer' key={`oLC${index}`} >
                   <PostLikes key ={`lB${index}`}  postlikes = {post.likes} user={user} post_id = {post._id} getAllPosts={otherUserPosts} postModalData={postModalData} />
                 </div>
                 <div className='otherPostCardContainer' onClick={getPostAndComments} data-_id = {post._id}>

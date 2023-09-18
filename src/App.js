@@ -18,7 +18,7 @@ import { signIn, linkPostToUser } from './Services/UserServices/UserServices.js'
 
 function App() {
 
-  const[user, setUser] = useState({})
+  const[user, setUser] = useState(null)
   const[posts, setPosts] = useState(null)
   const[email, setEmail] = useState('')
   const[password, setPassword] = useState('')
@@ -33,7 +33,6 @@ function App() {
   const[usersPosts, setUsersPosts]= useState(null)
   const[usersPost, setUsersPost]= useState(false)
   const navigate = useNavigate()
-
         
   const openLoginModal=()=>{
     const emailLabel = document.getElementById('emailLabel')
@@ -89,11 +88,7 @@ function App() {
 
   const handleSignout =()=>{
     window.localStorage.removeItem('Token')
-    setUser( prev => prev = {
-      id: "",
-      username: "",
-      email: ""
-    })
+    setUser( prev => prev = null)
     redirectHome('/')
   }
   
@@ -112,7 +107,6 @@ function App() {
       setUser(prev => prev = null )
     }
   }
-
   const handleOpenAddPostModal = () =>{
     const addPostModal = document.getElementById('addPostModal')
     if(user){
@@ -172,16 +166,14 @@ function App() {
     try{
       const postWComments = await postWithPopulatedComments(e.target.dataset.post_id)
       setPostModalData(prev=>prev=postWComments.data)
-      if(user.id === postWComments.data.poster._id){
+      if((user?user.id:user) === postWComments.data.poster._id){
         setUsersPost(prev => prev = true)
-      }else{
+      }else if(user === null){
         setUsersPost(prev => prev = false)
       }
       postModal.style.visibility = "visible"
     }catch(error){console.log(error.message)}
-
   }
-
   useEffect(()=>{
    getAllPosts()
   },[loadAllPosts])

@@ -140,7 +140,9 @@ const closePostModal=async()=>{
             </form>
             </div>
         </div>
+        
         :
+
             <div id ='PostModalInnerContainer'>
             <div className='imgAndDeets'>
                 <div id = 'postModalBanner'>

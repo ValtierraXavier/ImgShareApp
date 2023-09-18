@@ -6,7 +6,7 @@ import Liked from '../../Assets/Liked.png'
 import notLiked from '../../Assets/notLiked.png'
 
 
-export default function PostLikes({postlikes, post_id, user, getAllPosts, postModalData}) {
+export default function PostLikes({postlikes, post_id, user, getAllPosts}) {
     const[liked, setLiked]=useState(false)
 
     
@@ -16,6 +16,7 @@ export default function PostLikes({postlikes, post_id, user, getAllPosts, postMo
             await addLikeToPost(post_id, {userId})
             await addPostLike(userId, {post_id})
             await getAllPosts(e)
+            return
         }else{
             window.alert("please log in to like")
             return

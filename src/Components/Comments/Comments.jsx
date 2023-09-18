@@ -6,16 +6,29 @@ import { unlinkCommentFromUser } from '../../Services/UserServices/UserServices.
 import CommentLikes from '../CommentLikes/CommentLikes.jsx'
 
 export default function Comments({ comment , postId, user, getPostAndComments, setEditComment, editCommentText, setEditCommentText}) {
-
+  const timeStamp = (comment?comment._id:'').toString().substring(0,8)
+  const date = new Date(parseInt(timeStamp,16)*1000)
+  const difference = (( Date.now()) - date)
+  let days 
+  let hours
+  if(difference > 0){
+    const inDays = ((((difference / 1000)/60)/60)/24).toString().split('.')
+    days = inDays[0]
+    const remainder = inDays[1]
+    hours = Math.floor(`.${remainder}`*24)
+  }
 
   const handleDeleteComment= async(e)=>{
     const commentId = e.target.dataset.commentid
     const authorId = e.target.dataset.authorid
+    const postId = e.target.dataset.post_id
     try{
-      await deleteComment(commentId)
-      await unlinkCommentFromPost(postId, {commentId})
-      await unlinkCommentFromUser(authorId, {commentId})
-      getPostAndComments(e)
+      const del = await deleteComment(commentId)
+      if(del.status === 200){        
+        await unlinkCommentFromPost(postId, {commentId})
+        await unlinkCommentFromUser(authorId, {commentId})
+        await getPostAndComments(e)
+      }
     }catch(error){console.log(error.message)}
   }
 
@@ -25,7 +38,6 @@ export default function Comments({ comment , postId, user, getPostAndComments, s
     setEditCommentText(prev => prev = comment.commentText)
     editCommentModal.style.visibility = 'visible'
   }
-
   
   return (
     
@@ -34,7 +46,7 @@ export default function Comments({ comment , postId, user, getPostAndComments, s
       <div className='eachCommentContainer' data-id = {comment._id} >
         <div className='commentDetails'>
         <div className='nameDiv'>{comment.commentAuthor.userName}</div>
-        <div className='timeSincePost'>1day</div>
+        <div className='timeSincePost'>{`${days}d${hours}h`} <strong>ago</strong></div>
         </div>
         <p className='commentText'>{comment.commentText}</p>
         <div className='actionButtonsContainer'>
@@ -47,7 +59,7 @@ export default function Comments({ comment , postId, user, getPostAndComments, s
       <div className='eachCommentContainer' data-id = {comment._id} >
       <div className='commentDetails'>
       <div className='nameDiv'>{comment.commentAuthor.userName}</div>
-      <div className='timeSincePost'>1day</div>
+      <div className='timeSincePost'>{`${days}d${hours}h`} <strong>ago</strong></div>
       </div>
       <p className='commentText'>{comment.commentText}</p>
       <div className='actionButtonsContainer'>...
