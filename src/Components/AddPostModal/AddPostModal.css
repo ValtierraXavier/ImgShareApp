@@ -159,7 +159,6 @@
     .previewDiv{
         position: relative;
         flex-flow: column nowrap;
-        border: solid white;
         height: 15vh;
     }
     #fileInput{
