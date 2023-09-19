@@ -83,10 +83,108 @@
     border-radius: 5px;
 }
 
+.addPostModalCloseButton{
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 3%;
+    right:1.5%;
+    border: solid black 1px;
+    border-radius: 200px;
+    height:2.5rem;
+    padding: 5px;
+    color: black;
+    background-color: white;
+    transition: background-color .2s ease-in-out, color .2s ease-in-out, border .2s ease-in-out;
+}
+
+.previewDiv{
+    display: flex;
+    flex-flow: row nowrap;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 5%;
+    /* padding:5px; */
+    box-sizing: border-box;
+    color: white;
+}
+
+#fileInput{
+    order: 2;
+}
+
+#fileInput{
+    display: flex;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+#urlInput{
+    position: relative;
+    margin: 0;
+    width: 90%;
+    padding:5px;
+    box-sizing: border-box;
+}
+
+#selectionDiv{
+    display: flex;
+    height: 2rem;
+    width: 8%;
+    align-items: center;
+}
+
+.postTypeSelection{
+    order: 1;
+    position: relative;
+    width: 100%;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+}
+
 @media(min-width: 300px)and (max-width:800px){
     .modalBackground{
         width: 98%;
         height: 75%;
         margin: 22.5% 0;
+    }
+
+    .addPostModalCloseButton{
+        height: 10px;
+    }
+
+    .previewDiv{
+        position: relative;
+        flex-flow: column nowrap;
+        border: solid white;
+        height: 15vh;
+    }
+    #fileInput{
+        width: 100%;
+        margin: 0;
+    }
+
+    #urlInput{
+        width: 100%;
+    }
+
+    #selectionDiv{
+        position: relative;
+        width: 65%;       
+        height: 50%;
+        justify-content: space-around;
+    }
+
+    .selectionDiv label{
+        width: fit-content;
+    }
+    
+    #postTypeSelection{
+        display: absolute;
+        width: 50%;
+        height: 50%;
     }
 }

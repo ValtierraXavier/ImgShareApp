@@ -58,8 +58,8 @@
 #postImg{
     position: relative;
     border-radius: 10px;
-    height: 100%;
-    width:100%;
+    min-height: 100%;
+    min-width:100%;
     object-fit: cover;
     box-shadow: 0px 0px 10px -1px;
 }
@@ -70,6 +70,11 @@
 
 @media(min-width: 300px)and (max-width:800px){
     .postCardContainer{
+        position: relative;
+        width: 88vw;
+    }
+    #postImg{
+        position: relative;
         width: 100%;
     }
 }
