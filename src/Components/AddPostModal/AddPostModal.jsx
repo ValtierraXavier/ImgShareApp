@@ -35,7 +35,7 @@ export default function AddPostModal({ handleCloseAddPostModal, setTitle, title,
                   <label className="addModalLabel">{postType}</label>
                   <section className='previewDiv'> 
                   <div id='selectionDiv'>
-                    <label >Select Type</label>
+                    <label id='selectLabel' >Select Type:</label>
                     <select name='postType' className='postTypeSelection' id='postTypeSelection' onChange={whatType}>
                       <option value='File'>File</option>
                       <option value='URL'>URL</option>

@@ -145,11 +145,15 @@
     box-sizing: border-box;
 }
 
+#selectLabel{
+    margin-right: 10px;
+}
+
 @media(min-width: 300px)and (max-width:800px){
     .modalBackground{
         width: 98%;
         height: 75%;
-        margin: 22.5% 0;
+        margin: 22.5% 1%;
     }
 
     .addPostModalCloseButton{
@@ -174,16 +178,25 @@
         position: relative;
         width: 65%;       
         height: 50%;
-        justify-content: space-around;
-    }
-
-    .selectionDiv label{
-        width: fit-content;
+        justify-content: center;
     }
     
     #postTypeSelection{
         display: absolute;
         width: 50%;
         height: 50%;
+    }
+    @media(min-height: 300px) and (max-height: 500px){
+        .modalBackground{
+            position: relative;
+            /* bottom: 24%; */
+            height: 98%;
+            width: 98%;
+            margin: 1% 1%;
+        }
+
+        input{
+            height: 1rem;
+        }
     }
 }
