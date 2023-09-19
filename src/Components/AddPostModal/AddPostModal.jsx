@@ -3,7 +3,6 @@ import './AddPostModal.css'
 
 export default function AddPostModal({ handleCloseAddPostModal, setTitle, title, setUrl, url, setCaption, caption, handleAddPost, user}) {
   const[postType, setPostType]=useState('File')
-  // const[imgPreview, setImgPreview]=useState(null)
 
   const generateUrl=(e)=>{
     const file = e.target.files[0]
@@ -11,7 +10,6 @@ export default function AddPostModal({ handleCloseAddPostModal, setTitle, title,
     reader.readAsDataURL(file)
     reader.addEventListener('load',()=>{
       setUrl(prev => prev = reader.result)
-      // setImgPreview(prev => prev = reader.result)
     })
   }
 
