@@ -101,7 +101,7 @@
     border: solid white 1px
 }
 
-@media(min-width: 300px)and (max-width:800px){
+@media(min-width: 300px) and (max-width:800px){
     .loginFormContainerAndTitle{
         width: 98vw;
         height: 45vh;
@@ -110,5 +110,19 @@
 
     #loginModalCloseButton{
         height: 10px;
+    }
+}
+
+@media(min-height: 200px) and (max-height:500px){
+    .loginModal{
+        width: 75vw;
+        margin-left: 25vw;   
+    }
+
+    .loginFormContainerAndTitle{
+        top:0;
+        height: 85vh;
+        width:73vw;
+        margin: 17.5vh 2.5vh;
     }
 }

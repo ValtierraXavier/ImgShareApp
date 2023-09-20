@@ -186,7 +186,13 @@
         width: 50%;
         height: 50%;
     }
-    @media(min-height: 300px) and (max-height: 500px){
+    @media(min-height: 200px) and (max-height: 500px){
+        #addPostmodal{
+            display: absolute;
+            top: 15%;
+            font-size:1rem;
+        }
+
         .modalBackground{
             position: relative;
             height: 98%;
@@ -195,7 +201,7 @@
         }
 
         input{
-            height: 1rem;
+            height: .5rem;
         }
     }
 }

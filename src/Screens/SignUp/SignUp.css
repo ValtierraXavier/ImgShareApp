@@ -1,6 +1,6 @@
 .signupPageContainer{
     display: flex;
-    border: solid black 1px;
+    /* border: solid black 1px; */
     height: 100vh;
     width: 100vw;
 }
@@ -27,7 +27,7 @@
 .signupInput{
     margin: 2px 5%;
     position: relative;
-    border: solid black 1px;
+    /* border: solid black 1px; */
     outline: none;
     width: 90%;
     height: 2.5rem; 
@@ -66,4 +66,33 @@
         width: 98%;
     }
 
+}
+
+@media(min-height: 200px) and (max-height: 500px){
+    .signupPageContainer{
+        position: fixed;
+        width: 75vw;
+        margin: 0vw 25vw;
+        top: 0;
+    }
+    .signupIsland{
+        margin: 0 1%;
+        height: 76%;
+        top: 5px;
+    }
+
+    .islandLabel{
+        margin: 0;
+    }
+
+    .formLabels{
+        font-size: .8rem;
+        margin: 0 5%;
+    }
+
+    .signupInput{
+        height: 1.5rem;
+        font-size: 1rem;
+        margin:0 5%;
+    }
 }
