@@ -3,7 +3,7 @@
     flex-flow: column nowrap;
     align-items: center;
     position: relative;
-    top:110px;
+    top: 120px;
 }
 
 .fullCardContainer{
@@ -33,7 +33,7 @@
         width: 75%;
         margin: 0% 0% 0% 25%;
         height: 100vh;
-        top: 50px;
+        top: 11vh;
         align-items: center;
     }
 
@@ -45,6 +45,6 @@
         position: fixed;
         top: 0;
         left: 26%;
-
+        font-size: 1.4rem;
     }
 }

@@ -1,37 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Nav.css'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default function Nav({getAllPosts, openLoginModal, user, handleOpenAddPostModal, handleSignout}) {
+    const[userFirst, setUserFirst]= useState('G')
+
+    const setUserBadge =()=>{
+        if(user === null){
+            setUserFirst(prev =>prev = 'G')
+        }else{
+            const uN = user.username[0].toUpperCase()
+            setUserFirst(prev =>prev = uN)
+        }}
+
+    useEffect(()=>{
+        setUserBadge()
+    },[user])
 
   return (
     <div className = 'navContainer'>
         {user ? 
             <div className = 'nav'>
                 <div className = 'navUserDetail'>
-                    <NavLink to = {`/me/${user.id}`} >
-                        <img height = "40rem" src={`${user.avatarImg}`} alt = 'user profile'></img>
+                    <NavLink className='navLink' to = {`/me/${user.id}`} >
+                        {user.avatarImg === null ?
+                        <img className='userImg' height = "40rem" src={`${user.avatarImg?user.avatarImg:''}`} alt = 'user profile'></img>
+                        :
+                        <div className='userImg userFirst' id='userFirst'  height = "40rem">{userFirst}</div>
+                    }
                     </NavLink>
-                    <a className='userName' href = {`/me/${user.id}`}>
-                        <div>{user.username}</div>
-                    </a>
+                    <NavLink className='userName' to = {`/me/${user.id}`}>
+                        <button className='navButton'><em>{user.username}</em></button>
+                    </NavLink>
                 </div>
-                    <NavLink onClick={getAllPosts} className='homeButton' to = '/'>Home</NavLink>
-                    <button className='postButton' onClick={handleOpenAddPostModal}>Make a Post!</button>
-                    <div onClick={handleSignout}  className = 'signOutButton'>Sign Out</div>
+                    <NavLink onClick={getAllPosts} className='homeButton navButton' to = '/'>Home</NavLink>
+                    <button className='postButton navButton' onClick={handleOpenAddPostModal}>Make a Post!</button>
+                    <button onClick={handleSignout}  className = 'signOutButton navButton'>Sign Out</button>
             </div>
             :
             <div className = 'nav'>
                 <div className = 'navUserDetail'>
-                    <img height = "45rem" src='https://www.pngitem.com/pimgs/m/137-1370051_avatar-generic-avatar-hd-png-download.png' alt ='Guest Profile'></img>
-                    <div>Browsing as a Guest</div>
+                    <div className='userImg userFirst' id='userFirst' height = "45rem">{userFirst}</div>
+                    <div className='userName'><em>Guest</em></div>
                 </div>
-                <div className='homeAndPost'>
-                    <NavLink className='homeButton' to = '/'>Home</NavLink> 
-                </div> 
-                    <div onClick ={openLoginModal} className = 'signInButton'>Sign In</div>
-                    <Link  to='/signup' className = 'signUpButton'>Sign Up</Link>
-            </div>
+                    <NavLink className='homeButton navButton' to = '/'>Home</NavLink> 
+                    <button onClick ={openLoginModal} className = 'signInButton navButton'>Sign In</button>
+                    <NavLink  to='/signup' className = 'signUpButton navButton'>Sign Up</NavLink>
+                </div>
         }
     </div>
   )

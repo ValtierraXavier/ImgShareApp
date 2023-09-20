@@ -2,8 +2,8 @@
     display: flex; 
     flex-flow: column nowrap;
     align-items: center;
-    position:relative;
-    top: 110px;
+    position: relative;
+    top: 120px;
 }
 
 .otherUserTitle{
@@ -14,15 +14,42 @@
 
 .otherFullContainer{
     display: flex;
-    flex-flow:row-reverse nowrap;
-    position: relative;
-
+    flex-flow: row-reverse nowrap;
+    justify-content: center;
+    width: 40vw;
 }
 
 
 
 @media(min-width: 300px) and (max-width: 800px){
     .otherFullContainer{
-        width: 98vw;
+        width: 98%;
+    }
+}
+@media(min-height: 300px)and (max-height:500px){
+    .otherUserPage{
+        position: relative;
+        width: 75%;
+        margin: 0% 0% 0% 25%;
+        height: 100vh;
+        top: 11vh;
+        align-items: center;
+    }
+
+    .otherUserTitle{
+        position: fixed;
+        top: 0;
+        left: 26%;
+        font-size: 1.4rem;
+    }
+    .otherFullContainer{
+        width: 50vw;
+    }
+
+    .otherUserTitle{
+        position: fixed;
+        top: 0;
+        left: 26%;
+        font-size: 1.4rem;
     }
 }

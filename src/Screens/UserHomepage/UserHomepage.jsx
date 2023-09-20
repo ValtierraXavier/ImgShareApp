@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './UserHomepage.css'
 import PostCard from '../../Components/PostCard/PostCard.jsx'
-import {getAllUserPosts, getUser} from '../../Services/UserServices/UserServices.js'
+import {getAllUserPosts} from '../../Services/UserServices/UserServices.js'
 import PostLikes from '../../Components/PostLikes/PostLikes.jsx'
 import { useParams } from 'react-router-dom'
 
@@ -30,28 +30,21 @@ useEffect(()=>{
 
 return (
     <div className='userHomepage'>
-      <div className='userLabelContainer'>
-        <h2 id='userHomepageLabel' className='pageLabel'>Your Page</h2>
-      </div>
+      <h1 id='userHomepageLabel' className='pageLabel'>Your Page</h1>
       {arePosts?
-        <div id='userPostsMapContainer'>
-          {userPosts.map((post, index)=>{
+          userPosts.map((post, index)=>{
             return(
-              <div key={`PCC${index}`} >
-                <div onClick={getPostAndComments} data-_id = {post._id}>
-                  <PostCard key = {`uPC${index}`}  post={post}/>
-                </div>
+              <div className='fullUserPostContainer' key={`PCC${index}`} >
                 <div className='userpagePostLikes'>
                   <PostLikes key ={`lB${index}`}  postlikes = {post.likes} user={user} post_id = {post._id} getAllPosts={getUserPosts} postModalData={postModalData} />  
                 </div>
+                <div onClick={getPostAndComments} data-_id = {post._id}>
+                  <PostCard key = {`uPC${index}`}  post={post}/>
+                </div>
               </div>
-
-              )
-            })}
-        </div>
-        :
-        <h1 className='noPost'>No posts Here</h1>
+            )})
+            :
+            <h1 className='noPost'>No posts Here</h1>
         }
     </div>
-  )
-}
+  )}
