@@ -5,7 +5,7 @@ import {getAllUserPosts} from '../../Services/UserServices/UserServices.js'
 import PostLikes from '../../Components/PostLikes/PostLikes.jsx'
 import { useParams } from 'react-router-dom'
 
-export default function UserHomepage({checkUser, user, getPostAndComments, postModalData, setPostModalData, getAllPosts}) {
+export default function UserHomepage({ user, getPostAndComments, postModalData}) {
   const[userPosts, setUserPosts] = useState([])
   const[arePosts, setArePosts] = useState('')
   const userId = useParams().id

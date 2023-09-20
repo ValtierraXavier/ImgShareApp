@@ -27,14 +27,6 @@
     color: black;
 }
 
-.homeAndPost{
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-around;
-    width: 31%;    
-}
-
 .signInButtons{
     display: flex;
     flex-flow: row nowrap;
@@ -63,17 +55,6 @@
     text-decoration: none;
 }
 
-.signUpButton{
-    color: black;
-}
-
-.signInButton{
-    color: black;
-}
-
-.homeButton{
-    justify-self: flex-start;
-}
 
 .userName{
     color: black;
