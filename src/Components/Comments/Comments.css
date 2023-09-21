@@ -11,13 +11,10 @@
 }
 
 .nameDiv{
-    text-align: left;
-}
-
-.actionButtonsContainer{
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
+    align-content: space-around;
+    text-align: left;
 }
 
 .commentDetails{
@@ -25,6 +22,8 @@
     flex-flow:row nowrap;
     position: relative;
     justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
     box-shadow:0px 0px 0px;
     padding:1%;
     box-sizing: border-box;
@@ -34,10 +33,20 @@
     border-radius: 2px;
 }
 
+#ago{
+    font-weight: 600;
+}
+
 .eachCommentContainer:hover .commentDetails{
     box-shadow:1px 1px 1px ;
     top:-1px;
     left:-1px;
+}
+
+.actionButtonsContainer{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
 }
 
 .commentActionButtons{
@@ -50,11 +59,29 @@
     transition: .15s ease-in-out;
 }
 
-
-
-
 .commentActionButtons:hover{
     box-shadow:1px 1px 1px;
     top:-1px;
     left:-1px;
+}
+@media(min-width: 300px) and (max-width: 800px){ 
+    .commentDetails{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;        
+        font-size: .7rem;
+    }
+}
+
+@media(min-height: 200px) and (max-height: 500px){
+    .Comments{
+        font-size: .8rem;
+    }
+    
+    .commentDetails{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        font-size: .7rem;
+    }
 }

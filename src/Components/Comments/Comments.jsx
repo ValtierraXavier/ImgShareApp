@@ -45,8 +45,8 @@ export default function Comments({ comment , postId, user, getPostAndComments, s
     {(user?user.id:'') === comment.commentAuthor._id ?
       <div className='eachCommentContainer' data-id = {comment._id} >
         <div className='commentDetails'>
-        <div className='nameDiv'>{comment.commentAuthor.userName}</div>
-        <div className='timeSincePost'>{`${days}d${hours}h`} <strong>ago</strong></div>
+          <a className='nameDiv' href={`user/${comment.commentAuthor._id}`}>{comment.commentAuthor.userName}</a>
+          <div className='timeSincePost'>{`${days}d${hours}h`}<span id='ago'>ago</span></div>
         </div>
         <p className='commentText'>{comment.commentText}</p>
         <div className='actionButtonsContainer'>
@@ -58,13 +58,11 @@ export default function Comments({ comment , postId, user, getPostAndComments, s
       :
       <div className='eachCommentContainer' data-id = {comment._id} >
       <div className='commentDetails'>
-      <div className='nameDiv'>{comment.commentAuthor.userName}</div>
-      <div className='timeSincePost'>{`${days}d${hours}h`} <strong>ago</strong></div>
+        <a className='nameDiv' href={`user/${comment.commentAuthor._id}`}>{comment.commentAuthor.userName}</a>
+        <div className='timeSincePost'>{`${days}d${hours}h`}<span id='ago'> ago</span></div>
       </div>
       <p className='commentText'>{comment.commentText}</p>
-      <div className='actionButtonsContainer'>...
         <CommentLikes comment={comment} postId={postId} user={user} getPostAndComments={getPostAndComments} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText}/>
-      </div>
     </div>
     }  
    </div>
