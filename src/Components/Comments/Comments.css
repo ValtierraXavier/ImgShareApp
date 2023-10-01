@@ -35,7 +35,7 @@
 
 .commentDetails > a{
     text-decoration: none;
-    color: #dedede;
+    color: #61892f;
     transition: .2s ease;
 }
 .commentDetails:hover > a{

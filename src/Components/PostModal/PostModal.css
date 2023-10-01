@@ -47,7 +47,7 @@
 }
 .postBy > a{
     text-decoration: none;
-    color: #dedede;
+    color: #61892f;
     transition: .2s ease;    
 }
 .postBy:hover > a{

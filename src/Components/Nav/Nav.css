@@ -25,7 +25,10 @@
     justify-content: flex-start;
     width: 33%;
     text-decoration: none;
-    color: black;
+}
+
+.navLink{
+    text-decoration: none;
 }
 
 .signInButtons{
@@ -45,7 +48,7 @@
     align-items: center;
     align-self: center;
     background-color: black;
-    color: white;
+    color:#61892f;
     border: none;
     border-radius: 10px;
     width:  fit-content;
@@ -54,8 +57,12 @@
     box-sizing: border-box;
     font-size: 1rem;
     text-decoration: none;
+    transition: color .2s ease;
 }
 
+.navButton:hover{
+    color:#86c232;
+}
 
 .userName{
     color: black;
