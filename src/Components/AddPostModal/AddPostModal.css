@@ -4,7 +4,7 @@
     z-index: 500;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(50, 50, 50, .85);
+    background-color: rgba(150,150,150,.8);
     box-sizing: border-box;
     visibility: hidden;
 }
@@ -21,8 +21,9 @@
     width: 50%;
     height: 60%;
     margin: 15% 25%;
-    background-color: rgba(50, 50, 50, .85);
-    border-radius: 5px;
+    background-color: #222629ff;
+    color: #dedede;
+    border-radius: 10px;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
@@ -86,13 +87,19 @@
     align-items: center;
     top: 3%;
     right:1.5%;
-    border: solid black 1px;
+    border: solid #474b4f 1px;
+    background-color: black;
+    color: #474b4f;
     border-radius: 200px;
     height:2.5rem;
     padding: 5px;
-    color: black;
-    background-color: white;
     transition: background-color .2s ease-in-out, color .2s ease-in-out, border .2s ease-in-out;
+}
+
+.addPostModalCloseButton:hover{
+    color: #dedede;
+    background-color: black;
+    border: solid #dedede 1px;
 }
 
 #selectionDiv{

@@ -32,7 +32,7 @@ export default function SignupPage({redirectHome}) {
         const confirmPass = document.getElementById('passwordConfirm')
         const signupSubmit = document.getElementById('signupButton')
         if(passwordConfirm === ''){
-            confirmPass.style.color = "black"
+            confirmPass.style.color = "#dedede"
             signupSubmit.style.backgroundColor = "white"
             signupSubmit.disabled = true
             setpassMatch(prev=>prev='Confirm Password')

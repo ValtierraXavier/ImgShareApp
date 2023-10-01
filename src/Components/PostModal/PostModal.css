@@ -16,7 +16,9 @@
     height: 70%;
     width: 65%;
     border: solid black 1px;
-    background-color: rgba(255,255,255,1);
+    background-color: #222629ff;
+    border-radius: 10px;
+    color: #dedede;
 }
 
 .imgAndDeets{
@@ -38,11 +40,18 @@
     height:15%;
     width: 100%;
     margin:0;
-    color:black;
 }
 .postBy{
     position: relative;
     left: 10px;
+}
+.postBy > a{
+    text-decoration: none;
+    color: #dedede;
+    transition: .2s ease;    
+}
+.postBy:hover > a{
+    color:#88c232
 }
 
 .imgContainer{
@@ -151,18 +160,19 @@
     align-items: center;
     top: 11%;
     right:5%;
-    border: solid black 1px;
+    border: solid #474b4f 1px;
+    background-color: black;
+    color: #474b4f;
     border-radius: 200px;
     height:2.5rem;
     padding: 5px;
-    background-color: white;
-    color: black;
     transition: .2s  background-color ease-in-out, color .2s ease-in-out;
 }
 
 #closeButton:hover{
+    color: #dedede;
     background-color: black;
-    color: white;
+    border: solid #dedede 1px;
 }
 
 @media(min-width: 300px) and (max-width: 800px){

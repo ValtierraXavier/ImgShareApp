@@ -40,8 +40,8 @@ function App() {
     const loginSubmitButton = document.getElementById('loginSubmitButton')
     if(modalOpen === false){
       const loginModal = document.getElementById('loginModal')
-      emailLabel.style.color = 'black'
-      passwordLabel.style.color = 'black'
+      emailLabel.style.color = '#dedede'
+      passwordLabel.style.color = '#dedede'
       loginSubmitButton.style.backgroundColor = 'white'
       loginModal.style.visibility = 'visible'
       setModalOpen(prev => prev = true)

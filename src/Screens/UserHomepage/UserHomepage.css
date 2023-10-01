@@ -3,13 +3,14 @@
     flex-flow: column nowrap;
     position: relative;
     align-items: center;
-    top: 120px;
+    padding-top: 120px;
 }
 
 .userHomepageLabel{
     position: fixed;
     top: 40px;
     left: 5px;
+    color: #dedede;
 }
 
 .fullUserPostContainer{
@@ -17,6 +18,14 @@
     flex-flow: row-reverse nowrap;
     justify-content: center;
     width: 40vw;
+}
+
+.userpagePostLikes{
+    position: relative;
+    left: 5px;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 5px;
 }
 
 @media(min-width: 300px)and (max-width:800px){

@@ -20,7 +20,7 @@ export default function OtherUserPage({usersPosts, setUsersPosts, checkUser, use
     
   return (
     <div className='otherUserPage'>
-      <h1 onClick ={otherUserPosts} className='otherUserTitle'>{usersPosts?usersPosts.userName:''}'s Page</h1>
+      <h1 onClick ={otherUserPosts} className='otherUserTitle'>{`${usersPosts?usersPosts.userName:''}${usersPosts?.userName?'\'s Page':'Loading'}`}</h1>
         {usersPosts?usersPosts.posts.map((post, index)=>{
           return(
             <div className='otherFullContainer'>

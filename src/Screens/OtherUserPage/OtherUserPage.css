@@ -3,13 +3,14 @@
     flex-flow: column nowrap;
     align-items: center;
     position: relative;
-    top: 120px;
+    padding-top: 120px;
 }
 
 .otherUserTitle{
     position: fixed;
     top: 40px;
     left: 5px;
+    color: #dedede;
 }
 
 .otherFullContainer{
@@ -19,7 +20,13 @@
     width: 40vw;
 }
 
-
+.otherLikesContainer{
+    position: relative;
+    left: 5px;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 5px;
+}
 
 @media(min-width: 300px) and (max-width: 800px){
     .otherFullContainer{
