@@ -40,8 +40,8 @@
         position: relative;
         width: 75%;
         margin: 0% 0% 0% 25%;
-        height: 100vh;
-        top: 11vh;
+        min-height: 100vh;
+        padding-top: 12vh;
         align-items: center;
     }
 

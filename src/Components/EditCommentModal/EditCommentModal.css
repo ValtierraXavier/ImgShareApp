@@ -4,9 +4,9 @@
     position: fixed;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-color:rgba(100, 100, 100, .8);
+    width: 100dvw;
+    height: 100dvh;
+    background-color:rgba(100, 100, 100, .85);
     visibility: hidden;
 }
 
@@ -15,9 +15,10 @@
     position: relative;
     width: 50%;
     height:50%;
+    border-radius: 10px;
     justify-content: center;
     align-items:center;
-    background-color:rgba(100, 100, 100, .8);
+    background-color: #222629;
 }
 
 .editCommentModalContent{
@@ -48,6 +49,7 @@
 
 .editCommentLabels{
     margin: 5px 0;
+    color: #dedede;
 }
 
 .editCommentInput{
@@ -62,9 +64,14 @@
     padding: 5px;
 }
 
+.editCommentModalName{
+    color: #dedede;
+}
+
 #editCommentSubmitButton{
     height: 2.5rem;
     background-color: white;
+    color:#222629;
     border: none;
     transition: color .35s ease-in-out .1s;
 }
@@ -76,26 +83,53 @@
     align-items: center;
     top: 3.5%;
     right:2%;
-    border: solid black 1px;
     border-radius: 200px;
     height:2.5rem;
     padding: 5px;
-    background-color: white;
-    color: black;
+    border: solid #474b4f 1px;
+    background-color: black;
+    color: #474b4f;
     transition: .2s  background-color ease-in-out, color .2s ease-in-out;
 }
 
 .editCommentCloseButton:hover{
-    color: white;
+    color: #dedede;
     background-color: black;
+    border: solid #dedede 1px;
 }
 
-@media(min-width: 300px)and (max-width:500px){
+@media(min-width: 300px) and (max-width:500px){
+    .editCommentModal{
+        height: 100dvh;
+        width: 100dvw;
+        padding: 32.5px 0 0 0;
+    }
     .editCommentModalBackground{
         width: 98%;
-        height: 85%;
+        height: 90%;
     }
 
+    .editCommentCloseButton{
+        height: 10px;
+    }
+    
+    .editCommentInput{
+        height: 75%;
+    }
+}
+
+@media(min-height: 200px) and (max-height: 500px){
+    .editCommentModal{
+        width: 75dvw;
+        height: 100dvh;
+        margin: 0 0 0 25dvw;
+    }
+    
+    .editCommentModalBackground{
+        width: 98%;
+        height: 98%;
+    }
+    
     .editCommentCloseButton{
         height: 10px;
     }

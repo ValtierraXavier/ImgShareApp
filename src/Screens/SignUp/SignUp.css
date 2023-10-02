@@ -1,11 +1,12 @@
 .signupPageContainer{
     display: flex;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100dvh;
+    width: 100dvw;
     justify-content: center;
     align-items: center;
     background-color: rgba(100,100,100,.85);
     color: #dedede;
+    padding-top: 32.5px
 }
 
 .signupIsland{
@@ -18,12 +19,15 @@
     box-sizing: border-box;
     background-color: #222629;
     border-radius: 15px;  
-    padding: 10px;
+    padding: 20px;
 }
 
 .signupForm{
     display:flex;
+    position: relative;
+    height: 100%;
     flex-flow: column nowrap;
+
 }
 
 .signupInput{
@@ -64,8 +68,9 @@
 @media(min-width: 200px) and (max-width: 800px){
 
     .signupIsland{
-        margin: 0% 1%;
-        width: 98%;
+        margin: 0;
+        width: 98dvw;
+        height: 88dvh;
     }
 
 }
@@ -74,13 +79,12 @@
     .signupPageContainer{
         position: fixed;
         width: 75vw;
-        margin: 0vw 25vw;
-        top: 0;
+        margin: 0 25vw;
+        padding: 0;
     }
     .signupIsland{
-        margin: 0 1%;
-        height: 76%;
-        top: 5px;
+        margin: 0 ;
+        height: 98dvh;
     }
 
     .islandLabel{
