@@ -23,11 +23,11 @@ export default function OtherUserPage({usersPosts, setUsersPosts, checkUser, use
       <h1 onClick ={otherUserPosts} className='otherUserTitle'>{`${usersPosts?usersPosts.userName:''}${usersPosts?.userName?'\'s Page':'Loading'}`}</h1>
         {usersPosts?usersPosts.posts.map((post, index)=>{
           return(
-            <div className='otherFullContainer'>
+            <div className='otherFullContainer' key = {`oFC${index}`}>
               <div className='otherLikesContainer' key={`oLC${index}`} >
                 <PostLikes key ={`lB${index}`}  postlikes = {post.likes} user={user} post_id = {post._id} getAllPosts={otherUserPosts} postModalData={postModalData} />
               </div>
-              <div className='otherPostCardContainer' onClick={getPostAndComments} data-_id = {post._id}>
+              <div className='otherPostCardContainer' key = {`oPCC${index}`} onClick={getPostAndComments} data-_id = {post._id}>
                 <PostCard getPostAndComments={getPostAndComments} key={`PU${index}`} post={post?post:[]}/>
               </div>
             </div>

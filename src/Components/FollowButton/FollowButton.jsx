@@ -8,6 +8,7 @@ export default function FollowButton({user, postModalData, getPostAndComments}){
         const userToFollow = postModalData?.poster?._id
         const follower = user?.id
         const postid = postModalData?._id
+        console.log(postModalData?.poster)
         try{
             if(userToFollow === follower){
                 alert("Cannot follow yourself")
