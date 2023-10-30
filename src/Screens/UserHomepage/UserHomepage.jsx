@@ -39,7 +39,7 @@ return (
                   <PostLikes key ={`lB${index}`}  postlikes = {post.likes} user={user} post_id = {post._id} getAllPosts={getUserPosts} postModalData={postModalData} />  
                 </div>
                 <div onClick={getPostAndComments} data-_id = {post._id}>
-                  <PostCard key = {`uPC${index}`}  post={post}/>
+                  <PostCard getPostAndComments={getPostAndComments} key = {`uPC${index}`}  post={post}/>
                 </div>
               </div>
             )})

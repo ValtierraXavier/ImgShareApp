@@ -40,15 +40,19 @@ export const updateUser = async (id, newCommentId)=>{
 }
 
 export const linkPostToUser = async (id, body)=>{
-    return(
-        await usersAPI.put(`/linkpost/${id}`, body)
-    )
+    try{
+        return(
+            await usersAPI.put(`/linkpost/${id}`, body)
+        )
+    }catch(error){console.log(error.message)}
 }
 
 export const getAllUserPosts = async (id)=>{
-    return(
-        await usersAPI.get(`/userposts/${id}`)
-    )
+    try{
+        return(
+            await usersAPI.get(`/userposts/${id}`)
+        )
+    }catch(error){console.log(error.message)}
 }
 
 // export const getUserPosts = async(id)=>{
@@ -58,19 +62,40 @@ export const getAllUserPosts = async (id)=>{
 // }
 
 export const unlinkCommentFromUser = async(id, body)=>{
-    return(
-        await usersAPI.put(`/unlinkcomment/${id}`, body)
-    )
+    try{     
+        return(
+            await usersAPI.put(`/unlinkcomment/${id}`, body)
+        )
+    }catch(error){console.log(error.message)}
 }
 
 export const addPostLike = async(id, body)=>{
-    return(
-        await usersAPI.put(`/postlike/${id}`, body)
-    )
+    try{
+        return(
+            await usersAPI.put(`/postlike/${id}`, body)
+        )
+    }catch(error){console.log(error.message)}
 }
 
 export const addCommentLike = async(id, body)=>{
-    return(
-        await usersAPI.put(`/commentlike/${id}`, body)
-    )
+    try{
+        return(
+            await usersAPI.put(`/commentlike/${id}`, body)
+        )
+    }catch(error){console.log(error.message)}
+}
+
+export const follow = async(id, body)=>{
+    try{
+        return(
+            await usersAPI.put(`/follow/${id}`, body)
+        )
+    }catch(error){console.log(error.message)}  
+}
+export const unfollow = async(id, body)=>{
+    try{
+        return(
+            await usersAPI.put(`/unfollow/${id}`, body)
+        )
+    }catch(error){console.log(error.message)}  
 }

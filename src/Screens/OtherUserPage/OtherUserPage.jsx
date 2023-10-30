@@ -28,7 +28,7 @@ export default function OtherUserPage({usersPosts, setUsersPosts, checkUser, use
                 <PostLikes key ={`lB${index}`}  postlikes = {post.likes} user={user} post_id = {post._id} getAllPosts={otherUserPosts} postModalData={postModalData} />
               </div>
               <div className='otherPostCardContainer' onClick={getPostAndComments} data-_id = {post._id}>
-                <PostCard key={`PU${index}`} post={post?post:[]}/>
+                <PostCard getPostAndComments={getPostAndComments} key={`PU${index}`} post={post?post:[]}/>
               </div>
             </div>
           )

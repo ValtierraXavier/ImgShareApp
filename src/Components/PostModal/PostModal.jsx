@@ -5,6 +5,8 @@ import { postComment } from '../../Services/CommentServices/CommentServices.js'
 import {updateUser, getAllUserPosts} from '../../Services/UserServices/UserServices.js'
 import {linkCommentToPost, updatePost} from '../../Services/PostServices/PostServices.js'
 import PostLikes from '../PostLikes/PostLikes.jsx'
+import FollowButton from '../FollowButton/FollowButton.jsx'
+import UserPreview from '../UserPreview/UserPreview.jsx'
 
 export default function PostModal({usersPost, setUsersPost, setUsersPosts, getAllPosts, getPostAndComments, setPostModalData, postModalData, user, editComment, setEditComment, setEditCommentText, editCommentText, loadUserPosts, setLoadUserPosts}) {
 
@@ -82,7 +84,6 @@ const closePostModal=async()=>{
             startPostEdit()
         }catch(error){console.log(error.message)}
     }
-        
 
   return (
     <div className='postModal' id ='postModal'>
@@ -93,7 +94,7 @@ const closePostModal=async()=>{
                     <form>
                         <input name='title' type='text' className='postModalTitle' value={editTitle} onChange={(e)=>setEditTitle(prev => prev = e.target.value)} ></input>
                     </form>
-                    <h6 className = "postBy"> by <a href={`/user/${postModalData.poster?postModalData.poster._id:'noID'}`}>{postModalData.poster?postModalData.poster.userName:'username'}</a></h6>
+                    <h6 className = "postBy">by <a href={`/user/${postModalData.poster?postModalData.poster._id:'noID'}`}>{postModalData.poster?postModalData.poster.userName:'username'}</a></h6>
                 </div>
                 <div className='imgContainer'>
                     <img  src={postModalData.url? postModalData.url: 'https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg'} alt = 'post in modal' className='postModalImg'></img>
@@ -143,60 +144,66 @@ const closePostModal=async()=>{
         
         :
 
-            <div id ='PostModalInnerContainer'>
-            <div className='imgAndDeets'>
-                <div id = 'postModalBanner'>
+        <div id ='PostModalInnerContainer'>
+        <div className='imgAndDeets'>
+            <div id = 'postModalBanner'>
+                <div className='postModalTitleDiv'>
                     <h2 className='postModalTitle'>{postModalData.title? postModalData.title:"Title"}</h2>
-                    <h6 className = "postBy"> by <a href={`/user/${postModalData.poster?postModalData.poster._id:'noID'}`}>{postModalData.poster?postModalData.poster.userName:'username'}</a></h6>
                 </div>
-                <div className='imgContainer'>
-                    <img  src={postModalData.url? postModalData.url: 'https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg'} alt = 'modal placeholder' className='postModalImg'></img>
-                </div>
-                <div className='captionAndLikesContainer'>
-                    <div className='postModalCaption'>{postModalData.caption? postModalData.caption:'caption asfoiasfoksnfasoifnsof afi asfoasi fsaoif safoias fosaif safbasof safas fosajf saofj safoasf oasfu saoajs ofas fsa faosf saofj asof asfosa fsa foasf aof saofis foasf saof saofsa fosa fosa fsaof saof sfoasfjosaof saf safojf asojsa fosaj fsaojf saof saojf safojsa foasf asof fojas foasjf o'}</div>
-                    <div className='postLikesAndEdit' >
-                        <PostLikes postlikes = {postModalData.likes?postModalData.likes:[]} user={user}  post_id = {postModalData._id} getAllPosts={getPostAndComments}/>
-                        {usersPost === false?
-                            <div ></div>
-                            :
-                            <div onClick={startPostEdit}>edit</div>
-
-                        }
-                    </div>
+                <div className='postModalUserDiv'>
+                    <h6 className = "postBy">by <a href={`/user/${postModalData.poster?postModalData.poster._id:'noID'}`}>{postModalData.poster?postModalData.poster.userName:'username'}</a></h6>
+                    <UserPreview user={user} postModalData={postModalData} getPostAndComments={getPostAndComments}/>
+                    <FollowButton user={user} postModalData={postModalData} getPostAndComments={getPostAndComments}/>
                 </div>
             </div>
-            <div className='commentsContainer'>
-                <div id ='postModalBanner'>
-                    <h2 className='commentsContainerBanner'>Comments</h2>
-                    <div onClick={closePostModal} id='closeButton'> Close</div>
-                </div>
-                <div className= 'commentsContainerMap' id='commentsContainerMap'>
-                {postModalData.postComments && postModalData.postComments.length !== 0 ?
-                    postModalData.postComments.map((comment, index)=>{
-                        return(
-                            <div key={`CsC${index}`}>
-                                <Comments getPostAndComments={getPostAndComments} postId = {postModalData._id} comment={comment} key ={`commentItself${index}`} user ={user} editComment={editComment} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} loadUserPosts={loadUserPosts} setLoadUserPosts={setLoadUserPosts}/>
-                            </div>
-                            )})
-                            :  <div>
-                            <h2> Be the first to comment</h2>
+            <div className='imgContainer'>
+                <img  src={postModalData.url? postModalData.url: 'https://i.natgeofe.com/n/5f35194b-af37-4f45-a14d-60925b280986/NationalGeographic_2731043_4x3.jpg'} alt = 'modal placeholder' className='postModalImg'></img>
+            </div>
+            <div className='captionAndLikesContainer'>
+                <div className='postModalCaption'>{postModalData.caption? postModalData.caption:'caption asfoiasfoksnfasoifnsof afi asfoasi fsaoif safoias fosaif safbasof safas fosajf saofj safoasf oasfu saoajs ofas fsa faosf saofj asof asfosa fsa foasf aof saofis foasf saof saofsa fosa fosa fsaof saof sfoasfjosaof saf safojf asojsa fosaj fsaojf saof saojf safojsa foasf asof fojas foasjf o'}</div>
+                <div className='postLikesAndEdit' >
+                    <PostLikes postlikes = {postModalData.likes?postModalData.likes:[]} user={user}  post_id = {postModalData._id} getAllPosts={getPostAndComments}/>
+                    {usersPost === false?
+                        <div ></div>
+                        :
+                        <div onClick={startPostEdit}>edit</div>
 
-                        </div>
                     }
                 </div>
-            <div></div>
-            <form id ='commentForm' >
-                <label>Say Something</label>
-                    <textarea className ='commentsTextArea' onChange={(e)=>setCommentText(prev => prev = e.target.value)} value = {commentText} type= 'text' ></textarea>
-                {commentText?
-                    <input onClick={handleMakeComment} data-post_id = {postModalData._id} data-user_id = {user?user.id:null} type = 'submit' id = 'makeCommentButton'></input>
-                    :
-                    <input onClick={handleMakeComment} disabled data-post_id = {postModalData._id} data-user_id = {user?user.id:null} type = 'submit' id = 'makeCommentButton'></input>
-
-                }
-            </form>
             </div>
         </div>
+        <div className='commentsContainer'>
+            <div id ='postModalBanner'>
+                <h2 className='commentsContainerBanner'>Comments</h2>
+                <div onClick={closePostModal} id='closeButton'> Close</div>
+            </div>
+            <div className= 'commentsContainerMap' id='commentsContainerMap'>
+            {postModalData.postComments && postModalData.postComments.length !== 0 ?
+                postModalData.postComments.map((comment, index)=>{
+                    return(
+                        <div key={`CsC${index}`}>
+                            <Comments getPostAndComments={getPostAndComments} postId = {postModalData._id} comment={comment} key ={`commentItself${index}`} user ={user} editComment={editComment} setEditComment={setEditComment} editCommentText={editCommentText} setEditCommentText={setEditCommentText} loadUserPosts={loadUserPosts} setLoadUserPosts={setLoadUserPosts}/>
+                        </div>
+                        )})
+                        :  <div>
+                        <h2> Be the first to comment</h2>
+
+                    </div>
+                }
+            </div>
+        <div></div>
+        <form id ='commentForm' >
+            <label>Say Something</label>
+                <textarea className ='commentsTextArea' onChange={(e)=>setCommentText(prev => prev = e.target.value)} value = {commentText} type= 'text' ></textarea>
+            {commentText?
+                <input onClick={handleMakeComment} data-post_id = {postModalData._id} data-user_id = {user?user.id:null} type = 'submit' id = 'makeCommentButton'></input>
+                :
+                <input onClick={handleMakeComment} disabled data-post_id = {postModalData._id} data-user_id = {user?user.id:null} type = 'submit' id = 'makeCommentButton'></input>
+
+            }
+        </form>
+        </div>
+    </div>
                 }
     </div>
   )

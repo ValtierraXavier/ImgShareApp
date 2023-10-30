@@ -1,0 +1,38 @@
+.userPreview{
+    visibility: hidden;
+    display: flex;
+    position: absolute;
+    z-index: 900;
+    flex-flow: column nowrap;
+    background-color: lightgreen;
+    border: solid green 1px;
+    color: rgba(0,0,0,0);
+    padding: 5px;
+    font-size: .8rem;
+    opacity: 0.0;
+    width: 0%;
+    height: 0%;
+    transition: opacity .2s ease-in-out .2s,.2s width ease-in-out , height .2s ease-in-out .25s, color .2s ease-in-out .4s;
+}
+
+.postBy:hover ~ .userPreview{
+    visibility: visible;
+    opacity: .9;
+    top: 49px;
+    color: rgba(0,0,0,1);
+    width: 100%;
+    height: 170%;
+}
+
+.userPreview:hover{
+    visibility: visible;
+    opacity: .9;
+    color: rgba(0,0,0,1);
+    top: 49px;
+    width: 100%;
+    height: 170%;
+}
+
+#followbuttonDiv{
+    justify-self: flex-end;
+}

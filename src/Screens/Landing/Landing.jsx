@@ -15,7 +15,7 @@ export default function Landing({user, posts ,setPosts, postModalData, setPostMo
                 <PostLikes key ={`pL${index}`} id = 'likesButton' postlikes = {post.likes} user={user} post_id = {post._id} getAllPosts={getAllPosts} postModalData={postModalData?postModalData:{}}/>  
               </div>
               <div className='innerCardContainer' key={`PCC${index}`} onClick={getPostAndComments} data-_id = {post._id}>
-                <PostCard key={`PU${index}`} post={post}/>
+                <PostCard getPostAndComments={getPostAndComments} key={`PU${index}`} post={post}/>
               </div>
           </div>
           )
