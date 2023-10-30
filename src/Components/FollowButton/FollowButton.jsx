@@ -7,7 +7,7 @@ export default function FollowButton({user, postModalData, getPostAndComments}){
     const handleFollow=async(e)=>{
         const userToFollow = postModalData?.poster?._id
         const follower = user?.id
-        // const postid = postModalData?._id
+        const postid = postModalData?._id
         try{
             if(userToFollow === follower){
                 alert("Cannot follow yourself")
@@ -35,7 +35,7 @@ export default function FollowButton({user, postModalData, getPostAndComments}){
     return(
         
         <div className = 'followButtonContainer'>
-        {postModalData?.poster?.followers.indexOf(user?.id) >= 0?
+        {postModalData?.poster?.followers?.indexOf(user?.id) >= 0?
             <button className="followButton" data-post_id={postModalData?._id} onClick={handleUnfollow}>Unfollow</button>
             :
             <button className="followButton" data-post_id={postModalData?._id} onClick={handleFollow}>Follow</button>
