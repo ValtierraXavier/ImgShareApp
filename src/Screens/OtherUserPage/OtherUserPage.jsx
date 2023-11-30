@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './OtherUserPage.css'
 import PostCard from '../../Components/PostCard/PostCard.jsx'
 import PostLikes from '../../Components/PostLikes/PostLikes.jsx'
 import { getAllUserPosts } from '../../Services/UserServices/UserServices'
 import { useParams } from 'react-router-dom'
 
-export default function OtherUserPage({usersPosts, setUsersPosts, checkUser, user, getPostAndComments, postModalData, setPostModalData, getAllPosts}) {
-  const userId = useParams()
+export default function OtherUserPage({user, getPostAndComments, postModalData}) {
+  const userId = useParams()?.id
+  const [specifiedUserPosts, setSpecifiedUserPost] = useState(null)
 
-  const otherUserPosts =async()=>{
-    const posts = await getAllUserPosts(userId.id)
-    setUsersPosts(prev => prev = posts.data)
+  const otherUserPosts =async(id)=>{
+    try{
+      const userPosts = await getAllUserPosts(id)
+      setSpecifiedUserPost(prev => prev = userPosts.data)
+    }catch(e){console.log(e.message)}
   }
 
   useEffect(()=>{
@@ -20,8 +23,8 @@ export default function OtherUserPage({usersPosts, setUsersPosts, checkUser, use
     
   return (
     <div className='otherUserPage'>
-      <h1 onClick ={otherUserPosts} className='otherUserTitle'>{`${usersPosts?usersPosts.userName:''}${usersPosts?.userName?'\'s Page':'Loading'}`}</h1>
-        {usersPosts?usersPosts.posts.map((post, index)=>{
+      <h1 onClick ={otherUserPosts} className='otherUserTitle'>{`${specifiedUserPosts?specifiedUserPosts.userName:''}${specifiedUserPosts?.userName?'\'s Page':'Loading'}`}</h1>
+        {specifiedUserPosts?specifiedUserPosts.posts.map((post, index)=>{
           return(
             <div className='otherFullContainer' key = {`oFC${index}`}>
               <div className='otherLikesContainer' key={`oLC${index}`} >

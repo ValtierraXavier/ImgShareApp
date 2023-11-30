@@ -1,38 +1,71 @@
-.userPreview{
-    visibility: hidden;
+.postBy{
+    display: flex;
+    position: relative;
+    flex-flow: column nowrap;
+    z-index: 600;
+    margin: 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    white-space: pre;
+    box-sizing: border-box;
+}
+
+.postBy > a{
+    text-decoration: none;
+    color: #61892f;
+    transition: .2s ease;  
+    top: 4px;  
+}
+.postBy:hover > a{
+    color:#88c232
+}
+
+#userDetails{
     display: flex;
     position: absolute;
-    z-index: 900;
     flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
     background-color: lightgreen;
-    border: solid green 1px;
     color: rgba(0,0,0,0);
-    padding: 5px;
     font-size: .8rem;
     opacity: 0.0;
-    width: 0%;
-    height: 0%;
-    transition: opacity .2s ease-in-out .2s,.2s width ease-in-out , height .2s ease-in-out .25s, color .2s ease-in-out .4s;
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    box-sizing: border-box;
+    transition: opacity .2s ease-in-out 0s,.2s width ease-in-out , height .2s ease-in-out .25s, color .2s ease-in-out .4s;
 }
 
-.postBy:hover ~ .userPreview{
-    visibility: visible;
-    opacity: .9;
-    top: 49px;
-    color: rgba(0,0,0,1);
-    width: 100%;
-    height: 170%;
+#userDetails > div{
+    position: relative;
+    text-align: left;
+    width: 90%;
+    height:fit-content;
+    overflow-x: auto;
 }
 
-.userPreview:hover{
+.postBy:hover > #userDetails{
+    position: absolute;
     visibility: visible;
     opacity: .9;
     color: rgba(0,0,0,1);
-    top: 49px;
-    width: 100%;
-    height: 170%;
+    width: 210px;
+    height: 100px;
+    top: 102%;
 }
 
 #followbuttonDiv{
     justify-self: flex-end;
+}
+
+.userPageLink{
+    color: #dedede;
+    text-decoration:none;
+    transition: .2s ease;
+}
+.userPageLink:hover{
+    color:#86c232
 }

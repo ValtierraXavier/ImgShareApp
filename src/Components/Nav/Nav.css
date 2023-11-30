@@ -1,8 +1,8 @@
 .navContainer{
     position:fixed;
     z-index:900;
-    width: 100vw;
-    height: 4rem;
+    width: 100dvw;
+    height: 9dvh;
     top: 0;
     box-sizing: border-box;
     background-color: rgba(100,100,100,.8);
@@ -91,10 +91,6 @@
     font-size: x-large;
     font-weight: 700;
     text-decoration: none;
-}
-
-@media(min-width: 300px) and (max-width: 500px){
-
 }
 
 @media(min-height: 200px) and (max-height:500px){

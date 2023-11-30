@@ -16,7 +16,6 @@ export default function Nav({getAllPosts, openLoginModal, user, handleOpenAddPos
     useEffect(()=>{
         setUserBadge()
     },[user])
-
   return (
     <div className = 'navContainer'>
         {user ? 

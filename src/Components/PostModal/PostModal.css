@@ -34,6 +34,7 @@
 
 #postModalBanner{
     display: flex;
+    flex-flow: row;
     justify-content: flex-start;
     align-items: center;
     position: relative;
@@ -54,27 +55,17 @@
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
-    height: 75%;
     width: 30%;
     margin: 0 0 0 10px;
 }
 
-.postBy{
+#by{
     display: flex;
+    position: absolute;
+    flex-flow: row nowrap;
     align-items: center;
-    position: relative;
-    height: 100%;
-    box-sizing: border-box;
+    justify-content: center;
     white-space: pre;
-}
-.postBy > a{
-    text-decoration: none;
-    color: #61892f;
-    transition: .2s ease;  
-    top: 4px;  
-}
-.postBy:hover > a{
-    color:#88c232
 }
 
 .imgContainer{
@@ -200,16 +191,15 @@
 
 @media(min-width: 300px) and (max-width: 800px){
     .postModal{
-        height: 100%;
-        top: 8.6vh;
-
+        height: 91dvh;
+        margin-top: 9dvh;
     }
 
     #PostModalInnerContainer{
         position: relative;
         width: 98%;
-        height: 90%;
-        margin: 0% 1% 15% 1%;
+        height: 96%;
+        margin: 1% 2%;
     }
     #closeButton{
         top: 0;
@@ -235,6 +225,7 @@
 
     #PostModalInnerContainer{
         height: 98dvh;
-        top: 8.5px;
+        width: 98dvw;
+        margin: 1dvh;
     }
 }

@@ -111,7 +111,7 @@ const closePostModal=async()=>{
             </div>
             <div className='commentsContainer'>
                 <div id ='postModalBanner'>
-                    <h2 className='commentsContainerBanner'>Comments</h2>
+                    <h3 className='commentsContainerBanner'>Comments</h3>
                     <div onClick={closePostModal} id='closeButton'> Close</div>
                 </div>
                 <div className= 'commentsContainerMap' id='commentsContainerMap'>
@@ -123,7 +123,7 @@ const closePostModal=async()=>{
                             </div>
                             )})
                             :  <div>
-                            <h2> Be the first to comment</h2>
+                            <h3> Be the first to comment</h3>
 
                         </div>
                     }
@@ -148,12 +148,12 @@ const closePostModal=async()=>{
         <div className='imgAndDeets'>
             <div id = 'postModalBanner'>
                 <div className='postModalTitleDiv'>
-                    <h2 className='postModalTitle'>{postModalData.title? postModalData.title:"Title"}</h2>
+                    <h3 className='postModalTitle'>{postModalData.title? postModalData.title:"Title"}</h3>
                 </div>
                 <div className='postModalUserDiv'>
-                    <h6 className = "postBy">by <a href={`/user/${postModalData.poster?postModalData.poster._id:'noID'}`}>{postModalData.poster?postModalData.poster.userName:'username'}</a></h6>
-                    <UserPreview user={user} postModalData={postModalData} getPostAndComments={getPostAndComments}/>
-                    <FollowButton user={user} postModalData={postModalData} getPostAndComments={getPostAndComments}/>
+                    <h6 id='by'>by <UserPreview user={user} postModalData={postModalData} getPostAndComments={getPostAndComments}/></h6>
+                    
+                    {/* <FollowButton user={user} postModalData={postModalData} getPostAndComments={getPostAndComments}/> */}
                 </div>
             </div>
             <div className='imgContainer'>
@@ -174,7 +174,7 @@ const closePostModal=async()=>{
         </div>
         <div className='commentsContainer'>
             <div id ='postModalBanner'>
-                <h2 className='commentsContainerBanner'>Comments</h2>
+                <h3 className='commentsContainerBanner'>Comments</h3>
                 <div onClick={closePostModal} id='closeButton'> Close</div>
             </div>
             <div className= 'commentsContainerMap' id='commentsContainerMap'>
