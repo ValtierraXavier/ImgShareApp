@@ -48,19 +48,12 @@ export const linkPostToUser = async (id, body)=>{
 }
 
 export const getAllUserPosts = async (id)=>{
-    console.log(id)
     try{
         return(
             await usersAPI.get(`/userposts/${id}`)
         )
     }catch(error){console.log(error.message)}
 }
-
-// export const getUserPosts = async(id)=>{
-//     return(
-//         await usersAPI.get(`/userposts/${id}`)
-//     )
-// }
 
 export const unlinkCommentFromUser = async(id, body)=>{
     try{     

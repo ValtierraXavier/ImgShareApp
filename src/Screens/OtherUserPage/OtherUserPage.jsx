@@ -18,14 +18,19 @@ export default function OtherUserPage({user, getPostAndComments, postModalData})
 
   useEffect(()=>{
     otherUserPosts(userId)
-  },[])
+  })
 
     
   return (
     <div className='otherUserPage'>
       <h1 onClick ={otherUserPosts} className='otherUserTitle'>{`${specifiedUserPosts?specifiedUserPosts.userName:''}${specifiedUserPosts?.userName?'\'s Page':'Loading'}`}</h1>
-        {specifiedUserPosts?specifiedUserPosts.posts.map((post, index)=>{
-          return(
+        {specifiedUserPosts ? specifiedUserPosts.posts.length === 0 ? 
+        <div>
+          <h1>No Posts...yet</h1>
+        </div> 
+        :
+        specifiedUserPosts.posts.map((post, index)=>{
+          return(  
             <div className='otherFullContainer' key = {`oFC${index}`}>
               <div className='otherLikesContainer' key={`oLC${index}`} >
                 <PostLikes key ={`lB${index}`}  postlikes = {post.likes} user={user} post_id = {post._id} getAllPosts={otherUserPosts} postModalData={postModalData} />
@@ -36,11 +41,10 @@ export default function OtherUserPage({user, getPostAndComments, postModalData})
             </div>
           )
           })
-        :
-          <div>
-            <h1> Loading... </h1>
-          </div>
-        
+          :
+            <div>
+              <h1> Loading... </h1>
+            </div>        
         }
     </div>
   )

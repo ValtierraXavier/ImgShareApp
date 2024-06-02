@@ -71,18 +71,35 @@ function App() {
           passwordLabel.style.color = 'green'
           loginSubmitButton.style.backgroundColor = 'green'
           setTimeout(()=>{closeLoginModal()},1000)
+        }else if(userToken.response.status === 401){
+            emailLabel.style.color = 'red'
+            passwordLabel.style.color = 'red'
+            loginSubmitButton.style.backgroundColor = 'red'
+            setTimeout(() => {
+              window.alert("Credentials incorrect. Please try again.")
+              clearLoginModal()
+              }, 500)
+                        
           }else if(userToken.response.status === 500){
-            window.alert('User not found. Signup for an acocunt.')
+            window.alert('User not found. Signup for an account.')
           }
           getAllPosts()
     }catch(error){console.log(error)}
   }
-
+  const clearLoginModal = () => {
+    const emailLabel = document.getElementById('emailLabel')
+    const passwordLabel = document.getElementById('passwordLabel')
+    const loginSubmitButton = document.getElementById('loginSubmitButton')
+    setEmail(prev => prev = '')
+    setPassword(prev => prev = '')
+    emailLabel.style.color = 'white'
+    passwordLabel.style.color = 'white'
+    loginSubmitButton.style.backgroundColor = 'white'
+  }
   const closeLoginModal = ()=>{
     const loginModal = document.getElementById('loginModal')
     loginModal.style.visibility = 'hidden'
-    setEmail(prev => prev = '')
-    setPassword(prev => prev = '')
+    clearLoginModal()
     setModalOpen(prev => prev = false)
 }
 

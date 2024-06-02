@@ -1,5 +1,4 @@
 import axios from 'axios'
-import env from 'react-dotenv'
 
 // const baseUrl = env?.USER_BASE_URL
 const baseUrl = 'https://imgsharebe-production.up.railway.app/user/'
