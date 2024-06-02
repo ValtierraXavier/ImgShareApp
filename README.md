@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# [imgShare](https://imgshareapp-production.up.railway.app/)
+<img src="https://i.imgur.com/Qh6QZgM.png" alt="homescreen screenshot" width="400px"/>
+ImgShare is a social media app where you could make image abased posts feturing: comments, likes and authenticated users.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
+### Visiting [ImgShare](https://imgshareapp-production.up.railway.app/) as a guest user...
+ImgShare supports authentication, as such, you would need to sign-in and log-in in order to accest the core functionality of the site. 
+You are allowed to browse content on the website without logging/signing-in. However, liking, commenting, following users, and posting, will not be available  to you as a guest user.
 
-## Available Scripts
+<img src = "https://i.imgur.com/ZxX0NWU.png" alt = "guest homepage" width = "400px"/>
 
-In the project directory, you can run:
+### Creating a new account...
+Creating a new account on ImgShare is quick and easy. its as simple as filling out four fields: Email, username, password and password verification.
 
-### `npm start`
+<img src="https://i.imgur.com/zWHi8Sy.png" alt="sign-up form valid" width="400px"/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+*Note: The email field does not need to be a real email. Its simply used to differentiate users from eachother in the database. So long as the "email" follows traditional email conventions it will be valid. boop@email.com is a valid "email" to use.*
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+If the feilds are all filled out and valid (as in "passwords" match and "email" is in the proper format) the submit button will become active and password field labels will turn green. You will then be redirected to "Home".
 
-### `npm test`
+<img src="https://i.imgur.com/uOb56t1.png" alt="sign-up form invalid" width="400px"/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+While filling in the password and password confirm fields; if your inputs do not match, the form will look like the image above. Password input labels will turn red and the "submit" button will be disabled. 
 
-### `npm run build`
+---
+### logging-in...
+<img src="https://i.imgur.com/GDW47ht.png" alt="log-in form" width="400px"/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Logging-in to ImgShare is easy as well. If you have an account, simply enter your email and password, hit submit and you're in.
+If everyting went well the log in form should look liek the image below:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="https://i.imgur.com/KrKbAoD.png" alt="log-in form valid" width="400px"/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If the password is wrong, the form will look like the image below:
 
-### `npm run eject`
+<img src="https://i.imgur.com/YrGt7AP.png" alt="log-in form invalid" width="400px"/>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+If the email does not exist in the database, the form will look like the image below:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="https://i.imgur.com/Fj2JKUQ.png" alt="log-in form user not found" width="400px"/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
+### Authenticated Users...
+##### Home
+---
+The easiest way to tell that you are logged in is by looking in the top-left corner. Your username should be there with the first initial in a circle. 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<img src="https://i.imgur.com/uEWTAHE.png" alt="username in the navbar" width="400px"/>
 
-## Learn More
+You will also notice the "Make a Post!" button appear after authentication. You are now authorized to make posts, comments, follow and like posts. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="https://i.imgur.com/XmvjG5R.png" alt="authenticated homescreen" width="400px"/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+##### Making a post...
+---
 
-### Code Splitting
+Clicking the "Make a Post!" button will open a modal that looks liek the image below. Fill out the fields hit "Submit" and you've just made a post!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+There are two flavors of making a post on ImgShare. The first is through a file upload. Hit "choose file" and your computer's file browser will come into view pick the image  you wnt to use and post it. 
+*Note: Uploading images this way, has a limit. The image should not exceed 5MB.
 
-### Analyzing the Bundle Size
+<img src="https://i.imgur.com/1W4Lljj.png" alt="Make a post modal:  use a file view" width="400px"/><img src="https://i.imgur.com/XEnN7Qo.png" alt="Make a post modal:  use a link view" width="400px"/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The other way to save your image is through using an image link. Once you have found the image you want to post on the web, right click it and hit "copy image address" paste that link into the field and you're ready to make your post!
 
-### Making a Progressive Web App
+##### Post interactions...
+---
+Once youve made your post, you will see it appear on the home page. on the right side of your post will be a "thumbs-up" icon. This is for likes.
+Clicking on this icon will like the post on your behalf. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<img src="https://i.imgur.com/bxEfA3p.png" alt="post not liked state" width = "400px"/><img src="https://i.imgur.com/XqNSFVB.png" alt="post liked state" width="400px"/>
 
-### Advanced Configuration
+The icon will turn red and the number beside it will increment by one. Likewise, if you click the like icon while its in its "liked" state, it will turn grey and the number beside it will decrement by one.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+##### Edit your posts...
+---
+If youre looking at your own post and you're logged in; you will be able to edit your post. Clicking the edit button below the like button in the modal will change the modal to look like the image below. Edit your post!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<img src="https://i.imgur.com/SLh9XLK.png" alt="post modal normal state" width="400px"/><img src="https://i.imgur.com/mmuZtdP.png" alt="post modal edit state" width="400px"/>
 
-### `npm run build` fails to minify
+##### Commenting on posts...
+---
+So. You like the post...maybe you'd like to say something about it. ImgShare has a comments section for each post so long as you are logged in, you will be able to join the converstaion! 
+Clicking on the post will open open a modal with more details. The comment section is off to the right of the post.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<img src="https://i.imgur.com/pKx8Tek.png" alt="post modal open" width="400px"/>
+
+##### Liking posts...
+---
+There is also a like button for individual comments. Looks and functions in an identical way to the post like button. 
+
+<img src="https://i.imgur.com/oR357yJ.png" alt="Comment unliked" width="400px"/> <img src="https://i.imgur.com/M40mo6h.png" alt="Comment liked" width="400px"/>
+
+
+##### Edit your comments...
+---
+Editing your comments is just as simple. If the comment is yours, you will notice two extra buttons. "edit" and "delete".
+
+<img src="https://i.imgur.com/gdtb5o2.png" alt="'your' comment" width="400px"/> 
+
+Clicking the edit button will open a modal for editing the text of your comment. 
+
+<img src="https://i.imgur.com/zJVFWi6.png" alt="Edit comment modal" width="400px"/>
+
+Clicking delete will remove your comment from the pot and the database. This is irreversable.
+
+## Technologies Used:
+- Node
+- HTML
+- CSS
+- React
+- Mongoose
+- Express
+- JSON Web-Token
+- Axios
+
+## About
+I made this app for my [portfolio](http://betterportfolio-production.up.railway.app) and initally thought it would be a simple endeavor. I soon came to realize that i needed lots of practice in many areas such as conditional rendering, error handling even CSS became a challenge at some points. This project became an instrumental tool to help me improve greatly. I'm certainly a much better developer after solving the many challeneges I faced. The hardest thing I found was to write this readme file. After looking through and for a plethora of documentation I have a firm understanding of how important proper and accurate documentation is to a project. 
