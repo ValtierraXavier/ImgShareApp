@@ -56,12 +56,10 @@ You will also notice the "Make a Post!" button appear after authentication. You 
 
 Clicking the "Make a Post!" button will open a modal that looks liek the image below. Fill out the fields hit "Submit" and you've just made a post!
 
-<img src="Make a post modal: file upload view" alt="" width="400px"/>
-
 There are two flavors of making a post on ImgShare. The first is through a file upload. Hit "choose file" and your computer's file browser will come into view pick the image  you wnt to use and post it. 
 *Note: Uploading images this way, has a limit. The image should not exceed 5MB.
 
-<img src="Make a post modal:  use a link view" alt="" width="400px"/>
+<img src="https://i.imgur.com/1W4Lljj.png" alt="Make a post modal:  use a file view" width="400px"/><img src="https://i.imgur.com/XEnN7Qo.png" alt="Make a post modal:  use a link view" width="400px"/>
 
 The other way to save your image is through using an image link. Once you have found the image you want to post on the web, right click it and hit "copy image address" paste that link into the field and you're ready to make your post!
 
@@ -108,7 +106,6 @@ Clicking the edit button will open a modal for editing the text of your comment.
 Clicking delete will remove your comment from the pot and the database. This is irreversable.
 
 ## Technologies Used:
----
 - Node
 - HTML
 - CSS
@@ -119,15 +116,4 @@ Clicking delete will remove your comment from the pot and the database. This is 
 - Axios
 
 ## About
----
-I made this app for my [portfolio](http://betterportfolio-production.up.railway.app) and initally thought it would be a simple endeavor. I soon came to realize that i needed lots of practice in many areas such as conditional rendering, error handling even CSS became a challenge at some points. This project became an instrumental tool to help me improve greatly. I'm certainly a much better developer after solving the many challeneges I faced.
-
-
-
-
-
-
-
-
-
-<img src="" alt="" width="400px"/>
+I made this app for my [portfolio](http://betterportfolio-production.up.railway.app) and initally thought it would be a simple endeavor. I soon came to realize that i needed lots of practice in many areas such as conditional rendering, error handling even CSS became a challenge at some points. This project became an instrumental tool to help me improve greatly. I'm certainly a much better developer after solving the many challeneges I faced. The hardest thing I found was to write this readme file. After looking through and for a plethora of documentation I have a firm understanding of how important proper and accurate documentation is to a project. 
