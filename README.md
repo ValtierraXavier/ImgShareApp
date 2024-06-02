@@ -1,5 +1,4 @@
 # [imgShare](https://imgshareapp-production.up.railway.app/)
----
 <img src="https://i.imgur.com/Qh6QZgM.png" alt="homescreen screenshot" width="400px"/>
 ImgShare is a social media app where you could make image abased posts feturing: comments, likes and authenticated users.
 
