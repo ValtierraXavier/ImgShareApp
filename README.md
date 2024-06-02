@@ -108,6 +108,23 @@ Clicking the edit button will open a modal for editing the text of your comment.
 
 Clicking delete will remove your comment from the pot and the database. This is irreversable.
 
+## Technologies Used:
+---
+- Node
+- HTML
+- CSS
+- React
+- Mongoose
+- Express
+- JSON Web-Token
+- Axios
+
+## About
+---
+I made this app for my [portfolio](http://betterportfolio-production.up.railway.app) and initally thought it would be a simple endeavor. I soon came to realize that i needed lots of practice in many areas such as conditional rendering, error handling even CSS became a challenge at some points. This project became an instrumental tool to help me improve greatly. I'm certainly a much better developer after solving the many challeneges I faced.
+
+
+
 
 
 
