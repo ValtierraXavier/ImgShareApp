@@ -27,7 +27,7 @@ While filling in the password and password confirm fields; if your inputs do not
 <img src="https://i.imgur.com/GDW47ht.png" alt="log-in form" width="400px"/>
 
 Logging-in to ImgShare is easy as well. If you have an account, simply enter your email and password, hit submit and you're in.
-If everyting went well the log in form should look liek the image below:
+If everyting went well the log in form should look like the image below:
 
 <img src="https://i.imgur.com/KrKbAoD.png" alt="log-in form valid" width="400px"/>
 
